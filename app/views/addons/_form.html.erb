@@ -1,0 +1,37 @@
+<%= form_for([@store_detail, @addon]) do |f| %>
+  <% if @addon.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@addon.errors.count, "error") %> prohibited this addon from being saved:</h2>
+
+      <ul>
+      <% @addon.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :addonName %>
+    <%= f.text_field :addonName %>
+  </div>
+
+  <div class="field">
+    <%= f.label :addonType %>
+    <%= f.text_field :addonType %>
+  </div>
+
+  <div class="field">
+    <%= f.label :addonPrice %>
+    <%= f.number_field :addonPrice %>
+  </div>
+
+  <div class="field">
+    <%= f.label :hit %>
+    <%= f.number_field :hit %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Foods</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Foodname</th>
+      <th>Foodtype</th>
+      <th>Foodsize</th>
+      <th>Actualprice</th>
+      <th>Offerprice</th>
+      <th>Quantityavailable</th>
+      <th>Hit</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @foods.each do |food| %>
+      <tr>
+        <td><%= food.foodName %></td>
+        <td><%= food.foodType %></td>
+        <td><%= food.foodSize %></td>
+        <td><%= food.actualPrice %></td>
+        <td><%= food.offerPrice %></td>
+        <td><%= food.quantityAvailable %></td>
+        <td><%= food.hit %></td>
+        <td><%= link_to 'Show', store_detail_food_path(@store_detail, food) %></td>
+        <td><%= link_to 'Edit', edit_store_detail_food_path(@store_detail, food) %></td>
+        <td><%= link_to 'Destroy', store_detail_foods_path(@store_detail, food), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Food', new_store_detail_food_path %>
+<%= link_to 'Back to Store', @store_detail %>

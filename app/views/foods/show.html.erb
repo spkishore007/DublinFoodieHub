@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Foodname:</strong>
+  <%= @food.foodName %>
+</p>
+
+<p>
+  <strong>Foodtype:</strong>
+  <%= @food.foodType %>
+</p>
+
+<p>
+  <strong>Foodsize:</strong>
+  <%= @food.foodSize %>
+</p>
+
+<p>
+  <strong>Actualprice:</strong>
+  <%= @food.actualPrice %>
+</p>
+
+<p>
+  <strong>Offerprice:</strong>
+  <%= @food.offerPrice %>
+</p>
+
+<p>
+  <strong>Quantityavailable:</strong>
+  <%= @food.quantityAvailable %>
+</p>
+
+<p>
+  <strong>Hit:</strong>
+  <%= @food.hit %>
+</p>
+
+<h2>Reviews</h2>
+<% @food.comments.each do |comment| %>
+<p>
+  <strong>Comment:</strong>
+  <%= comment.comment %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= comment.rating %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', edit_store_detail_food_path(@store_detail,@food) %> |
+<%= link_to 'Back', store_detail_foods_path(@store_detail) %> |
+<%= link_to "Pizza Comments", food_comments_path(@food) %>
+

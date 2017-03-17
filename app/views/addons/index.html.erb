@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Addons</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Addonname</th>
+      <th>Addontype</th>
+      <th>Addonprice</th>
+      <th>Hit</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @addons.each do |addon| %>
+      <tr>
+        <td><%= addon.addonName %></td>
+        <td><%= addon.addonType %></td>
+        <td><%= addon.addonPrice %></td>
+        <td><%= addon.hit %></td>
+        <td><%= link_to 'Show', store_detail_addon_path(@store_detail, addon) %></td>
+        <td><%= link_to 'Edit', edit_store_detail_addon_path(@store_detail, addon) %></td>
+        <td><%= link_to 'Destroy', store_detail_addons_path(@store_detail, addon), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Addon', new_store_detail_addon_path %>
+<%= link_to 'Back to Store', @store_detail %>

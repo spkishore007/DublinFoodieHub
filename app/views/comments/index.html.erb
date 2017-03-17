@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Comments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Comment</th>
+      <th>Rating</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.comment %></td>
+        <td><%= comment.rating %></td>
+        <td><%= link_to 'Show', food_comment_path(@food, comment) %></td>
+        <td><%= link_to 'Edit', edit_food_comment_path(@food, comment) %></td>
+        <td><%= link_to 'Destroy', food_comments_path(@food, comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Comment', new_food_comment_path %>
+<%= link_to 'Back to Pizza details', store_detail_foods_path(@food) %>
+

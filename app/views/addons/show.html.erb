@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Addonname:</strong>
+  <%= @addon.addonName %>
+</p>
+
+<p>
+  <strong>Addontype:</strong>
+  <%= @addon.addonType %>
+</p>
+
+<p>
+  <strong>Addonprice:</strong>
+  <%= @addon.addonPrice %>
+</p>
+
+<p>
+  <strong>Hit:</strong>
+  <%= @addon.hit %>
+</p>
+
+<%= link_to 'Edit', edit_store_detail_addon_path(@addon) %> |
+<%= link_to 'Back', store_detail_addons_path %>

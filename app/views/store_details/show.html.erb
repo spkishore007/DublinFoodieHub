@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Storename:</strong>
+  <%= @store_detail.store_name %>
+</p>
+
+<p>
+  <strong>Building:</strong>
+  <%= @store_detail.building %>
+</p>
+
+<p>
+  <strong>Street:</strong>
+  <%= @store_detail.street %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @store_detail.city %>
+</p>
+
+<p>
+  <strong>Pincode:</strong>
+  <%= @store_detail.pincode %>
+</p>
+
+<p>
+  <strong>Storemobile:</strong>
+  <%= @store_detail.store_mobile %>
+</p>
+
+<p>
+  <strong>Storeemail:</strong>
+  <%= @store_detail.store_email %>
+</p>
+<%#
+ <p>
+  <strong>Fooddetail:</strong>
+   <%= @store_detail.foodDetail %>
+<%#</p>
+
+<p>
+  <strong>Addondetail:</strong>
+  <%= @store_detail.addonDetail %>
+<%#</p> %>
+%>
+<%= link_to 'Edit', edit_store_detail_path(@store_detail) %> |
+<%= link_to 'Back', store_details_path %>|
+<%= link_to "Find your Pizza", store_detail_foods_path(@store_detail) %>|
+<%= link_to "Add AddOn", store_detail_addons_path(@store_detail) %>

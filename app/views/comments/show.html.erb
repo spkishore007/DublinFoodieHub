@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @comment.comment %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @comment.rating %>
+</p>
+
+<%= link_to 'Edit', edit_food_comment_path(@food, @comment) %> |
+<%= link_to 'Back', food_comments_path %>

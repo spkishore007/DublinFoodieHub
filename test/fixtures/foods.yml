@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  foodName: MyString
+  foodType: MyString
+  foodSize: MyString
+  actualPrice: 1
+  offerPrice: 1
+  quantityAvailable: 1
+  hit: 1
+  storeDetail: one
+
+two:
+  foodName: MyString
+  foodType: MyString
+  foodSize: MyString
+  actualPrice: 1
+  offerPrice: 1
+  quantityAvailable: 1
+  hit: 1
+  storeDetail: two

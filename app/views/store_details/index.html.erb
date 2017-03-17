@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Store Details</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Storename</th>
+      <th>Building</th>
+      <th>Street</th>
+      <th>City</th>
+      <th>Pincode</th>
+      <th>Storemobile</th>
+      <th>Storeemail</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @store_details.each do |store_detail| %>
+      <tr>
+        <td><%= store_detail.store_name %></td>
+        <td><%= store_detail.building %></td>
+        <td><%= store_detail.street %></td>
+        <td><%= store_detail.city %></td>
+        <td><%= store_detail.pincode %></td>
+        <td><%= store_detail.store_mobile %></td>
+        <td><%= store_detail.store_email %></td>
+        <td><%= link_to 'Show', store_detail %></td>
+        <td><%= link_to 'Edit', edit_store_detail_path(store_detail) %></td>
+        <td><%= link_to 'Destroy', store_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Store Detail', new_store_detail_path  if policy(StoreDetail).new?%>
