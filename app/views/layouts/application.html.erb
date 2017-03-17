@@ -13,8 +13,9 @@
           <li><%= link_to "Sign in", new_member_session_path %></li> 
         <% end %>
          <%if member_signed_in? %>
-            <% if current_member.user_name == 'admin' %>
-              <%= link_to "Dashboard", rails_admin_path %>
+            <% if current_member.admin? %>
+             <%= link_to "Admin Panel",administrator_root_path %><li>
+             
             <% else %>
               <li></li><%= link_to current_member.email,edit_member_registration_path %><li>
               <li><%= link_to "Sign out", destroy_member_session_path, method: :delete %></li>

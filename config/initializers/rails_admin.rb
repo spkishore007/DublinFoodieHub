@@ -1,8 +1,5 @@
 RailsAdmin.config do |config|
-  config.authorize_with do
-    redirect_to main_app.root_path unless current_member.user_name == 'admin'
-  end
-  
+
   ### Popular gems integration
 
   ## == Devise ==

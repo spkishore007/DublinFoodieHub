@@ -16,6 +16,7 @@ gem 'devise', '~> 4.2'
 gem 'awesome_print', '~> 1.7'
 gem 'pundit', '~> 1.1'
 
+
 gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'

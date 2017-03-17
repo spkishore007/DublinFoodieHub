@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
+    namespace :administrator do
+    root :to => 'application#index'
+  end
+  
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+
+
+
   get "sign_up" => "devise/registrations#new", :as => "sign_up"
   devise_for :members
   
@@ -12,9 +20,7 @@ Rails.application.routes.draw do
   
   resources :store_details do
     resources :addons
-    resources :foods #do
-      #resources :comments
-    #end
+    resources :foods 
   end
   
   
