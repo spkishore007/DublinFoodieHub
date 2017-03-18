@@ -10,11 +10,11 @@ class StoreDetailPolicy < ApplicationPolicy
   end
 
   def show?
-    #scope.where(:id => store_detail.id).exists?
+    scope.where(:id => store_detail.id).exists?
   end
 
   def create?
-    self.present?
+    user.try(:admin?)||user.try(:owner?)
   end
 
   def new?

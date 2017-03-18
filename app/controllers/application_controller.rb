@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   #after_action :verify_authorized, unless: :devise_controller? 
   
   #to show better messages
- # rescue_from Pundit::NotAuthorizedError, with: :member_not_authorized
+  rescue_from Pundit::NotAuthorizedError, with: :member_not_authorized
   
 
   
@@ -24,8 +24,8 @@ class ApplicationController < ActionController::Base
     end
     
     def member_not_authorized
-     # respond_to do |format|
-     #format.html { redirect_to (root_path), notice: 'You have no privileges to view' }
-     # end
+     respond_to do |format|
+     format.html { redirect_to (root_path), notice: 'You have no privileges to view' }
+     end
     end
 end
