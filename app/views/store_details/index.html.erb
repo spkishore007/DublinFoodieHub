@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Store Details</h1>
+<h1>Visit Your Shops</h1>
 
 <table>
   <thead>
@@ -26,9 +26,9 @@
         <td><%= store_detail.pincode %></td>
         <td><%= store_detail.store_mobile %></td>
         <td><%= store_detail.store_email %></td>
-        <td><%= link_to 'Show', store_detail %></td>
-        <td><%= link_to 'Edit', edit_store_detail_path(store_detail) %></td>
-        <td><%= link_to 'Destroy', store_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Visit Store',store_detail %></td>
+        <td><%= link_to 'Edit Store', edit_store_detail_path(store_detail) if policy(store_detail).edit? %></td>
+        <td><%= link_to 'Close your Store', store_detail, method: :delete, data: { confirm: 'Your Shop will Permenently Deleted' }if policy(store_detail).destroy? %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New Store Detail', new_store_detail_path  if policy(StoreDetail).new?%>
+<%= link_to 'Add Your Store', new_store_detail_path  if policy(StoreDetail).new?%>

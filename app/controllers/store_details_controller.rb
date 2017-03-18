@@ -1,6 +1,6 @@
 class StoreDetailsController < ApplicationController
   before_action :set_store_detail, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_member!, except: [:index, :show]
+  before_action :authenticate_member!, except: [:index]
   #before_action :authorize_store_owner!, only: [:edit, :update, :destroy]
 
   # GET /store_details
@@ -15,9 +15,9 @@ class StoreDetailsController < ApplicationController
   # GET /store_details/1
   # GET /store_details/1.json
   def show
-   # @store_details =StoreDetailPolicy.new(current_user, @store_detail).new?
-    @store_detail = StoreDetail.find(params[:id])
-    #authorize @store_detail, :show?
+   @store_details =StoreDetailPolicy.new(current_user, @store_detail).new?
+   # @store_detail = StoreDetail.find(params[:id])
+    authorize @store_detail, :show?
   end
 
   # GET /store_details/new
