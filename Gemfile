@@ -15,9 +15,11 @@ gem 'rails', '~> 5.1.0.beta1'
 gem 'devise', '~> 4.2'
 gem 'awesome_print', '~> 1.7'
 gem 'pundit', '~> 1.1'
+gem 'pry', '~> 0.10.4'
+gem 'brakeman', '~> 3.4', '>= 3.4.1'
 
 
-gem 'sqlite3'
+gem 'pg', '~> 0.20.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

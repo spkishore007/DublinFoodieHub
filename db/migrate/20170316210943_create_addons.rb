@@ -5,7 +5,7 @@ class CreateAddons < ActiveRecord::Migration[5.1]
       t.string :addonType
       t.integer :addonPrice
       t.integer :hit
-      t.references :storeDetail, foreign_key: true
+      t.references :store_details, foreign_key: true
 
       t.timestamps
     end

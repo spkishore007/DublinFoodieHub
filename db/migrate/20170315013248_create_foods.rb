@@ -8,7 +8,7 @@ class CreateFoods < ActiveRecord::Migration[5.1]
       t.integer :offerPrice
       t.integer :quantityAvailable
       t.integer :hit
-      t.references :storeDetail, foreign_key: true
+      t.references :store_details, foreign_key: true
 
       t.timestamps
     end
