@@ -14,7 +14,8 @@ class StoreDetailPolicy < ApplicationPolicy
   end
 
   def create?
-    user.try(:admin?)||user.try(:owner?)
+    #user.try(:admin?)||user.try(:owner?)
+    true
   end
 
   def new?

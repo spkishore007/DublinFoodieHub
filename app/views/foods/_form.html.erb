@@ -1,10 +1,10 @@
-<%= form_for([@store_detail, @food]) do |f| %>
-  <% if @food.errors.any? %>
+<%= form_for([@store_detail, @product]) do |f| %>
+  <% if @product.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@food.errors.count, "error") %> prohibited this food from being saved:</h2>
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
       <ul>
-      <% @food.errors.full_messages.each do |message| %>
+      <% @product.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -12,42 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :foodName %>
-    <%= f.text_field :foodName %>
-  </div>
-
-  <div class="field">
-    <%= f.label :foodType %>
-    <%#= f.text_field :foodType %>
-    <%= f.select :foodType, [['Veg','veg'],['Non Veg','non veg']] %>
-  
-  </div>
-
-  <div class="field">
-    <%= f.label :foodSize %>
-    <%#= f.text_field :foodSize %>
-    <%= f.select :foodSize, [['9 inch','9 inch'],['12 inch','12 inch']] %>
-  
-  </div>
-
-  <div class="field">
-    <%= f.label :actualPrice %>
-    <%= f.number_field :actualPrice %>
-  </div>
-
-  <div class="field">
-    <%= f.label :offerPrice %>
-    <%= f.number_field :offerPrice %>
-  </div>
-
-  <div class="field">
-    <%= f.label :quantityAvailable %>
-    <%= f.number_field :quantityAvailable %>
-  </div>
-
-  <div class="field">
-    <%= f.label :hit %>
-    <%= f.number_field :hit %>
+    <%= f.label :productName %>
+    <%= f.text_field :name %>
   </div>
 
   <div class="actions">

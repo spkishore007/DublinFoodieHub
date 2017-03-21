@@ -2,9 +2,9 @@
 
 <p>
   <strong>Foodname:</strong>
-  <%= @food.foodName %>
+  <%= @food.name %>
 </p>
-
+<!..
 <p>
   <strong>Foodtype:</strong>
   <%= @food.foodType %>
@@ -34,9 +34,9 @@
   <strong>Hit:</strong>
   <%= @food.hit %>
 </p>
-
+..>
 <h2>Reviews</h2>
-<% @food.comments.each do |comment| %>
+<% @product.comments.each do |comment| %>
 <p>
   <strong>Comment:</strong>
   <%= comment.comment %>
@@ -48,7 +48,7 @@
 </p>
 <% end %>
 
-<%= link_to 'Edit', edit_store_detail_food_path(@store_detail,@food) %> |
-<%= link_to 'Back', store_detail_foods_path(@store_detail) %> |
-<%= link_to "Pizza Comments", food_comments_path(@food) %>
+<%= link_to 'Edit', edit_store_detail_product_path(@store_detail,@product) %> |
+<%= link_to 'Back', store_detail_products_path(@store_detail) %> |
+<%= link_to "Pizza Comments", product_comments_path(@product) %>
 

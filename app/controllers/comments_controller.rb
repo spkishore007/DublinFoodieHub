@@ -4,42 +4,42 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-     @food = Food.find(params[:food_id])
+     @product = Product.find(params[:product_id])
      puts("methods of index in food comments" ,@food.methods)
-     @comments = @food.comments
+     @comments = @product.comments
     
   end
 
   # GET /comments/1
   # GET /comments/1.json
   def show
-    @food = Food.find(params[:food_id])
-     @comment = @food.comments.find(params[:id])
+     @product = Product.find(params[:product_id])
+     @comment = @product.comments.find(params[:id])
     
   end
 
   # GET /comments/new
   def new
-    @food = Food.find(params[:food_id])
-     @comment = @food.comments.build
+     @product = Product.find(params[:product_id])
+     @comment = @product.comments.build
   end
 
   # GET /comments/1/edit
   def edit
-    @food = Food.find(params[:food_id])
-     @comment = @food.comments.find(params[:id])
+     @product = Product.find(params[:product_id])
+     @comment = @product.comments.find(params[:id])
     
   end
 
   # POST /comments
   # POST /comments.json
   def create
-    @food = Food.find(params[:food_id])
-     @comment = @food.comments.build(comment_params)
+     @product = Product.find(params[:product_id])
+     @comment = @product.comments.build(comment_params)
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to food_comments_url, notice: 'Food comment was successfully created.' }
+        format.html { redirect_to product_comments_url, notice: 'Food comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }
@@ -51,12 +51,12 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
-    @food = Food.find(params[:food_id])
-     @comment = @food.comments.find(params[:id])
+     @product = Product.find(params[:product_id])
+     @comment = @product.comments.find(params[:id])
     
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to food_comment_url, notice: 'Food comment was successfully updated.' }
+        format.html { redirect_to product_comment_url, notice: 'Food comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit }
@@ -68,11 +68,11 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
-    @food = Food.find(params[:food_id])
-     @comment = @food.comments.find(params[:id])
+    @product = Product.find(params[:product_id])
+    @comment = @product.comments.find(params[:id])
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to food_comments_url, notice: 'Food comment was successfully destroyed.' }
+      format.html { redirect_to product_comments_url, notice: 'Food comment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

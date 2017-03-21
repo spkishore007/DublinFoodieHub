@@ -17,18 +17,18 @@
   </thead>
 
   <tbody>
-    <% @foods.each do |food| %>
+    <% @products.each do |food| %>
       <tr>
-        <td><%= food.foodName %></td>
-        <td><%= food.foodType %></td>
+        <td><%= food.name %></td>
+      <!--  <td><%= food.foodType %></td>
         <td><%= food.foodSize %></td>
         <td><%= food.actualPrice %></td>
         <td><%= food.offerPrice %></td>
         <td><%= food.quantityAvailable %></td>
-        <td><%= food.hit %></td>
-        <td><%= link_to 'Show', store_detail_food_path(@store_detail, food) %></td>
-        <td><%= link_to 'Edit', edit_store_detail_food_path(@store_detail, food) %></td>
-        <td><%= link_to 'Destroy', store_detail_foods_path(@store_detail, food), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= food.hit %></td> -->
+        <td><%= link_to 'Show', store_detail_product_path(@store_detail, product) %></td>
+        <td><%= link_to 'Edit', edit_store_detail_product_path(@store_detail, product) %></td>
+        <td><%= link_to 'Destroy', store_detail_products_path(@store_detail, product), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,5 +36,5 @@
 
 <br>
 
-<%= link_to 'New Food', new_store_detail_food_path %>
+<%= link_to 'New Food', new_store_detail_product_path %>
 <%= link_to 'Back to Store', @store_detail %>

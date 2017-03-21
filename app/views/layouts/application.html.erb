@@ -2,10 +2,17 @@
 <html>
   <head>
     <title>AuthProject</title>
-    <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <% if request.ssl? %>
+    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' %>
+    <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js' %>
+  <% else %>
+    <%= stylesheet_link_tag 'http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' %>
+    <%= javascript_include_tag 'http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js' %>
+  <% end %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+  <%= csrf_meta_tags %>
 <style>
 body {margin: 0;}
 
@@ -42,8 +49,6 @@ body {
 }
 </style>
   </head>
-
-  <body>
     <ul class="topnav">
          <li class="active"><%= link_to "Home", root_path %></li>
         <% unless member_signed_in? %>
@@ -53,6 +58,9 @@ body {
          <% if member_signed_in? && current_member.admin? %>
              <li><%= link_to "Admin Panel",administrator_root_path %><li>
          <%end%>
+         <li class="right">
+         <h1 class="cart-text"><%= render 'layouts/cart_text' %></h1>
+         </li>
          <%if member_signed_in? %>
           <li class="right"><%= link_to "Log out", destroy_member_session_path, method: :delete %></li>
           <li class="right"><%= link_to current_member.email,edit_member_registration_path %><li>
@@ -63,3 +71,4 @@ body {
     <%= yield %>
   </body>
 </html>
+

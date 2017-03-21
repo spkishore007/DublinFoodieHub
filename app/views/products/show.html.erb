@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+  <strong>FoodName</strong>
+  <%= @product.name %>
+
+<h2>Reviews</h2>
+<% @product.comments.each do |comment| %>
+<p>
+  <strong>Comment:</strong>
+  <%= comment.comment %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= comment.rating %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', edit_store_detail_product_path(@store_detail,@product) %> |
+<%= link_to 'Back', store_detail_products_path(@store_detail) %> |
+<%= link_to "Pizza Comments", product_comments_path(@product) %>
+

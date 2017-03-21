@@ -9,7 +9,11 @@ class ApplicationController < ActionController::Base
   
   #to show better messages
   rescue_from Pundit::NotAuthorizedError, with: :member_not_authorized
-  
+
+
+
+  helper_method :current_order
+
 
   
     private
@@ -28,4 +32,14 @@ class ApplicationController < ActionController::Base
      format.html { redirect_to (root_path), notice: 'You have no privileges to view' }
      end
     end
+
+    def current_order
+      if !session[:order_id].nil?
+       Order.find(session[:order_id])
+       else
+       Order.new
+      end
+    end
+  
+
 end

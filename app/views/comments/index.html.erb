@@ -16,9 +16,9 @@
       <tr>
         <td><%= comment.comment %></td>
         <td><%= comment.rating %></td>
-        <td><%= link_to 'Show', food_comment_path(@food, comment) %></td>
-        <td><%= link_to 'Edit', edit_food_comment_path(@food, comment) %></td>
-        <td><%= link_to 'Destroy', food_comments_path(@food, comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', product_comment_path(@product, comment) %></td>
+        <td><%= link_to 'Edit', edit_product_comment_path(@product, comment) %></td>
+        <td><%= link_to 'Destroy', product_comments_path(@product, comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,6 +26,6 @@
 
 <br>
 
-<%= link_to 'New Comment', new_food_comment_path %>
-<%= link_to 'Back to Pizza details', store_detail_foods_path(@food) %>
+<%= link_to 'New Comment', new_product_comment_path %>
+<%= link_to 'Back to Pizza details', store_detail_products_path(@product) %>
 
