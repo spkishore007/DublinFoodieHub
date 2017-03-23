@@ -11,10 +11,10 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :member_not_authorized
 
 
-
   helper_method :current_order
 
-
+  before_action :strict_transport_security
+ 
   
     private
     def configure_permitted_parameters
@@ -40,6 +40,12 @@ class ApplicationController < ActionController::Base
        Order.new
       end
     end
+    
+  def strict_transport_security
+    if request.ssl?
+      response.headers['Strict-Transport-Security'] = "max-age=31536000; includeSubDomains"
+    end
+  end
   
 
 end

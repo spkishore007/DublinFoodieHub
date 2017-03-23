@@ -13,6 +13,8 @@ module AuthProject
     # -- all .rb files in that directory are automatically loaded.
 
     #config.active_record.observers = :product_observer
+    # force HTTPS on all environments
+    config.force_ssl = true
 
   end
 end

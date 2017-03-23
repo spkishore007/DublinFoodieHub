@@ -50,6 +50,7 @@ body {
 </style>
   </head>
     <ul class="topnav">
+        <tr>
          <li class="active"><%= link_to "Home", root_path %></li>
         <% unless member_signed_in? %>
           <li class="right"><%= link_to "Sign up", new_member_registration_path %></li>
@@ -58,13 +59,19 @@ body {
          <% if member_signed_in? && current_member.admin? %>
              <li><%= link_to "Admin Panel",administrator_root_path %><li>
          <%end%>
+         </tr>
+         <tr>
          <li class="right">
          <h1 class="cart-text"><%= render 'layouts/cart_text' %></h1>
          </li>
+         </tr>
+         <tr>
          <%if member_signed_in? %>
           <li class="right"><%= link_to "Log out", destroy_member_session_path, method: :delete %></li>
           <li class="right"><%= link_to current_member.email,edit_member_registration_path %><li>
          <% end %>
+         </tr>
+
   </ul>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p
