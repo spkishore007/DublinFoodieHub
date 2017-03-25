@@ -7,11 +7,11 @@ class Member < ApplicationRecord
          
    validate :strong_password_check
    
-   validates :user_name, uniqueness: true, presence: true, format: { with: /\A[a-zA-Z]+([a-zA-Z]|\d)*\Z/ }
+   #validates :user_name, uniqueness: true, presence: true, format: { with: /\A[a-zA-Z]+([a-zA-Z]|\d)*\Z/ }
 
   def strong_password_check
     if password.present? and not password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)./)
-      errors.add "Your password must include at least one digit, one lowercase and uppercase letter"
+    errors.add :password, "must include at least one lowercase letter, one uppercase letter, and one digit"
     end
   end
 end
