@@ -93,6 +93,7 @@ GEM
       activesupport (>= 4.1.0)
     haml (4.0.7)
       tilt
+    hash-deep-merge (0.1.1)
     i18n (0.8.1)
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
@@ -106,6 +107,8 @@ GEM
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    lazy_high_charts (1.5.6)
+      hash-deep-merge
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -130,6 +133,8 @@ GEM
     orm_adapter (0.5.0)
     pg (0.20.0)
     pg (0.20.0-x86-mingw32)
+    pizza_chart (2.0.4)
+      lazy_high_charts
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -248,8 +253,10 @@ DEPENDENCIES
   devise (~> 4.2)
   erubis
   jbuilder (~> 2.5)
+  lazy_high_charts
   listen (>= 3.0.5, < 3.2)
   pg (~> 0.20.0)
+  pizza_chart (~> 2.0.4)
   pry (~> 0.10.4)
   puma (~> 3.7)
   pundit (~> 1.1)
