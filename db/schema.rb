@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326145005) do
+ActiveRecord::Schema.define(version: 20170329204307) do
 
   create_table "addons", force: :cascade do |t|
     t.string "addonName"
@@ -122,6 +122,23 @@ ActiveRecord::Schema.define(version: 20170326145005) do
     t.string "ingredients"
     t.string "calorie"
     t.decimal "hit"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string "firstName"
+    t.string "lastName"
+    t.string "building"
+    t.string "street"
+    t.string "city"
+    t.integer "pincode"
+    t.integer "mobile"
+    t.date "dateOfBirth"
+    t.string "email"
+    t.string "idProof"
+    t.integer "member_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_profiles_on_member_id"
   end
 
   create_table "store_details", force: :cascade do |t|

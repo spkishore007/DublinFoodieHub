@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   alias_method :current_user, :current_member
   include Pundit
+  
+  # Prevent CSRF attacks by raising an exception.
+  #For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   
@@ -15,7 +18,9 @@ class ApplicationController < ActionController::Base
 
   before_action :strict_transport_security
  
-  
+  def after_sign_in_path_for(resource)
+  "/signedinuserprofile"
+  end
     private
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up) do |member|

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  
     namespace :administrator do
     root :to => 'application#getdata'
     get 'application/getdata' =>'application#getdata'
@@ -19,9 +20,10 @@ Rails.application.routes.draw do
 
   get "sign_up" => "devise/registrations#new", :as => "sign_up"
   devise_for :members
-  
+
   root :to => "store_details#index"
-  
+  resources :profiles
+  get '/signedinuserprofile' => 'profiles#signedinuserprofile'
   resources :products do
       resources :comments
   end

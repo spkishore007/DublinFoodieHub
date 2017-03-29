@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+<h1>See Your Account</h1>
+<p>
+  <strong>Firstname:</strong>
+  <%= @profile.firstName %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @profile.lastName %>
+</p>
+
+<p>
+  <strong>Building:</strong>
+  <%= @profile.building %>
+</p>
+
+<p>
+  <strong>Street:</strong>
+  <%= @profile.street %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @profile.city %>
+</p>
+
+<p>
+  <strong>Pincode:</strong>
+  <%= @profile.pincode %>
+</p>
+
+<p>
+  <strong>Mobile:</strong>
+  <%= @profile.mobile %>
+</p>
+
+<p>
+  <strong>Dateofbirth:</strong>
+  <%= @profile.dateOfBirth %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @profile.email %>
+</p>
+
+<p>
+  <strong>Idproof:</strong>
+  <%= @profile.idProof %>
+</p>
+
+<%= link_to 'Edit', edit_profile_path(@profile),class: "btn btn-primary" %> |
+<%= link_to 'Explore Pizza Stores', root_path,class: "btn btn-primary" %>
