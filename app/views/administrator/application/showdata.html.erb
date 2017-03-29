@@ -1,0 +1,41 @@
+<li> <h1> <%= link_to "Admin Dashboard",rails_admin_path %></h1></li> 
+<hr>
+<%= form_tag "administrator/application/showdata" do %>
+  
+  <div class="field">
+    Choose your table
+    <%= select_tag(:table, options_for_select([['Order Table','order'], ['Food Table','food'], ['Sales Table','sales'], ['Returning Customers','customer count']])) %>
+  </div>
+
+  <div class="field">
+    Choose the type of chart
+    <%= select_tag(:chart, options_for_select([['Pie',"pie"], ['Spline',"spline"], ['Bar',"bar"], ['line',"line"]])) %>
+  </div>
+
+  <div class="field">
+    Single Chart:
+    <%= check_box_tag(:singleChart, "single chart") %>
+  </div>
+  <div class="field">
+    Double Chart:
+    <%= check_box_tag(:doubleChart, "double chart") %>
+  </div>
+  <div class="field">
+    Triple chart:
+    <%= check_box_tag(:tripleChart, "triple chart") %>
+  </div>
+  <div class="actions">
+    <%= submit_tag 'view' %>
+  </div>
+<% end %>
+<hr>
+<h1>Hi der! Check out the Visualization</h1>
+<% if @chart1 %>
+<%= high_chart("my_combine_div1", @chart1) %>
+<% end %>
+<% if @chart2 %>
+<%= high_chart("my_combine_div2", @chart2) %>
+<% end %>
+<% if @chart3 %>
+<%= high_chart("my_combine_div3", @chart3) %>
+<% end %>

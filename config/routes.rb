@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
   
-
     namespace :administrator do
-    root :to => 'application#index'
-  end
+    root :to => 'application#getdata'
+    get 'application/getdata' =>'application#getdata'
+    post 'application/showdata' =>'application#showdata'
+    get 'application/sales'
+    get 'application/order'
+    get 'application/food'
+    get 'application/customer'
+    get 'application/extra'
+    get 'application/index'
+    end
   
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 

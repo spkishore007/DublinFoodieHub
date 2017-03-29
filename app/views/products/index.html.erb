@@ -5,7 +5,12 @@
 
 <div class="row">
   <div class="col-xs-6 col-xs-offset-3">
+    <% @products.each do |product| %>      
+    <td><%= link_to 'Show', store_detail_product_path(@store_detail, product) %></td>
+        <td><%= link_to 'Edit', edit_store_detail_product_path(@store_detail, product) %></td>
+        <td><%= link_to 'Destroy', store_detail_product_path(@store_detail, product), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% @products.each do |product| %>
+
 
       <%= render "product_row", product: product, order_item: @order_item %>
     <% end %>
