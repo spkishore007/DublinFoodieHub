@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
   def create
     
     @store_detail = StoreDetail.find(params[:store_detail_id])
-    @product = @store_detail.products.build(params.require(:product).permit(:name, :price, :active))  
+    @product = @store_detail.products.build(params.require(:product).permit(:name, :price, :active, :description, :foodType, :foodSize, :offerPrice, :quantityAvailable, :allergens, :ingredients, :calorie,  :hit))  
    # @food = StoreDetail.find(params[:store_detail_id]).foodDetails.build(params.require(:food).permit(:foodName, :foodType, :foodSize, :actualPrice, :offerPrice, :quantityAvailable, :hit))  
 
     respond_to do |format|
@@ -117,6 +117,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name,:price,:active)
+      params.require(:product).permit(:name, :price, :active, :description, :foodType, :foodSize, :offerPrice, :quantityAvailable, :allergens, :ingredients, :calorie,  :hit)
     end
 end

@@ -10,14 +10,64 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= f.label :productName %>
+    <%= f.label :food %>
     <%= f.text_field :name %>
-    <%= f.label :Cost %>
-    <%= f.text_field :price%>
   </div>
 
+  <div class="field">
+    <%= f.label :foodType %>
+    <%#= f.text_field :foodType %>
+    <%= f.select :foodType, [['Veg','veg'],['Non Veg','non veg']] %>
+  
+  </div>
+
+  <div class="field">
+    <%= f.label :foodSize %>
+    <%#= f.text_field :foodSize %>
+    <%= f.select :foodSize, [['9 inch','9 inch'],['12 inch','12 inch']] %>
+  
+  </div>
+
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.number_field :price %>
+  </div>
+
+  <div class="field">
+    <%= f.label :offerPrice %>
+    <%= f.number_field :offerPrice %>
+  </div>
+
+  <div class="field">
+    <%= f.label :quantityAvailable %>
+    <%= f.number_field :quantityAvailable %>
+  </div>
+  <div class="field">
+    <%= f.label :active %>
+    <%= f.check_box :active,  {}, true  %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :ingredients %>
+    <%= f.text_field :ingredients %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :allergens %>
+    <%= f.text_field :allergens %>
+  </div>
+  <div class="field">
+    <%= f.label :calorie %>
+    <%= f.number_field :calorie %>
+  </div>
+  <div class="field">
+    <%= f.label :hit %>
+    <%= f.number_field :hit %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
