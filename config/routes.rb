@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :store_details do
     resources :addons
     resources :products 
+
   end
   
    resources :products do
@@ -36,6 +37,7 @@ Rails.application.routes.draw do
   end
   
   resources :products
+  get "make_pizza" => "products/make_pizza", :as => "make_pizza"
   resource :cart, only: [:show]
   resources :order_items, only: [:create, :update, :destroy]
   root to: "products#index"

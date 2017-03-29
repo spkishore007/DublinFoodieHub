@@ -1,7 +1,43 @@
 <p id="notice"><%= notice %></p>
-
-  <strong>FoodName</strong>
+  <strong>PizzaName</strong>
   <%= @product.name %>
+  <strong>Cost</strong>
+  <%= @product.price%>
+ 
+  
+  <hi>Select your Toppings</hi>
+  <div class="field">
+   Mozarella:
+  <%= check_box_tag 'product[windows]', 'Mozarella' %>
+  </div>
+  <div class="field">
+   Parmesan Cheese:
+  <%= check_box_tag 'product[mirror]', 'Parmesan' %>
+  </div>
+  <div class="field">
+   Pepperoni:
+  <%= check_box_tag 'product[psensor]', 'Pepperoni' %>
+  </div
+   <div class="field">
+   Capicollo:
+  <%= check_box_tag 'product[windows]', 'Capicollo' %>
+  </div>
+  <div class="field">
+   Chipotle Chicken:
+  <%= check_box_tag 'product[mirror]', 'Chipotle' %>
+  </div>
+  <div class="field">
+    Pesto sauce:
+   <%= check_box_tag 'product[psensor]', 'Pesto' %>
+  </div
+   <div class="field">
+   Bruschetta sauce:
+  <%= check_box_tag 'product[psensor]', 'Bruschetta' %>
+  </div
+   <div class="field">
+   BBQ sauce:
+  <%= check_box_tag 'product[psensor]', 'BBQ' %>
+  </div>
 
 <h2>Reviews</h2>
 <% @product.comments.each do |comment| %>
@@ -15,6 +51,7 @@
   <%= comment.rating %>
 </p>
 <% end %>
+
 
 <%= link_to 'Edit', edit_store_detail_product_path(@store_detail,@product) %> |
 <%= link_to 'Back', store_detail_products_path(@store_detail) %> |

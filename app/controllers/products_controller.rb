@@ -1,3 +1,5 @@
+require 'pizza_decorator'
+
 class ProductsController < ApplicationController
   def index
     @store_detail = StoreDetail.find(params[:store_detail_id])
@@ -71,6 +73,41 @@ class ProductsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def create_pizza
+     myPizza = SimplePizza.new(@product.price,@product.name,@product.allergens,@product.ingredients,@product.calorie)
+     # add the extra features to the new car
+     if params[:product][:Mozarella].to_s.length > 0 then
+     myPizza = MozarellaDecorator.new(myPizza)
+     end
+     if params[:product][:Parmesan].to_s.length > 0 then
+     myPizza = ParmesanDecorator.new(myPizza)
+     end
+     if params[:product][:Pepperoni].to_s.length > 0 then
+     myPizza = PepperoniDecorator.new(myPizza)
+     end
+     if params[:product][:Capicollo].to_s.length > 0 then
+     myPizza = CapicolloDecorator.new(myPizza)
+     end
+     if params[:product][:Chipotle].to_s.length > 0 then
+     myPizza = ChipotleDecorator.new(myPizza)
+     end
+     if params[:product][:Pesto].to_s.length > 0 then
+     myPizza = PestoDecorator.new(myPizza)
+     end
+     if params[:product][:Bruschetta].to_s.length > 0 then
+     myPizza = BruschettaDecoratorr.new(myPizza)
+     end
+     if params[:product][:BBQ].to_s.length > 0 then
+     myPizza = BbqDecorator.new(myPizza)
+     end
+     ## populate the cost and the description details
+     @product.price = myPizza.price
+     @product.description = myPizza.description
+     @product.ingredients=myPizza.ingredients
+     @product.allergens= mypizza.allergens
+     @product.calorie= mypizza.calorie
+  end  
 
   private
     # Use callbacks to share common setup or constraints between actions.
