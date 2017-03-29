@@ -1,11 +1,6 @@
 <p id="notice"><%= notice %></p>
-  <strong>PizzaName</strong>
-  <%= @product.name %>
-  <strong>Cost</strong>
-  <%= @product.offerPrice%>
- 
-  
-  <hi>Select your Toppings</hi>
+  <br>
+  <h3>Select your Toppings</h3>
   <div class="field">
    Mozarella:
   <%= check_box_tag 'product[windows]', 'Mozarella' %>
@@ -42,6 +37,17 @@
   <hr>
   <br>
   <h4> Food Information's :</h4>
+  <p>
+  <strong>PizzaName</strong>
+  <%= @product.name %>
+  </p>
+  <p>
+  <strong>Cost</strong>
+  <%= @product.offerPrice%>
+  </p>
+  
+  
+  
   <p>
   <strong>Foodtype:</strong>
   <%= @product.foodType %>
