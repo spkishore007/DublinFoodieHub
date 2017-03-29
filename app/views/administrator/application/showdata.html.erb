@@ -1,4 +1,6 @@
-<%= form_tag "/graph/showdata" do %>
+<li> <h1> <%= link_to "Admin Dashboard",rails_admin_path %></h1></li> 
+<hr>
+<%= form_tag "administrator/application/showdata" do %>
   
   <div class="field">
     Choose your table
@@ -22,12 +24,18 @@
     Triple chart:
     <%= check_box_tag(:tripleChart, "triple chart") %>
   </div>
-  <div class="field">
-    Combo chart:
-    <%= check_box_tag(:multiChart, "multiple chart") %>
-  </div>
-
   <div class="actions">
     <%= submit_tag 'view' %>
   </div>
+<% end %>
+<hr>
+<h1>Hi der! Check out the Visualization</h1>
+<% if @chart1 %>
+<%= high_chart("my_combine_div1", @chart1) %>
+<% end %>
+<% if @chart2 %>
+<%= high_chart("my_combine_div2", @chart2) %>
+<% end %>
+<% if @chart3 %>
+<%= high_chart("my_combine_div3", @chart3) %>
 <% end %>

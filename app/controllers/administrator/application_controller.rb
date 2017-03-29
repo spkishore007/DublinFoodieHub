@@ -1,8 +1,38 @@
 require 'graph'
+require 'graph_decorator'
+
 class Administrator::ApplicationController < ApplicationController
   
   # GET /cars/1
   # GET /cars/1.json
+  def getdata
+  end
+  
+  def showdata
+     simpleGraph = BasicGraph.new(params[:chart])
+     if params[:table] == 'sales' then
+      graphData = SalesDecorator.new(simpleGraph)
+     end
+     if params[:table] == 'food' then
+      graphData = FoodDecorator.new(simpleGraph)
+     end
+     if params[:table] == 'order' then
+      graphData = OrderDecorator.new(simpleGraph)
+     end
+     
+     if params[:singleChart].to_s.length > 0 then
+        @chart1 = graphData.singleChart
+        puts "55555555555555555555555"
+        puts @chart1.inspect
+     end
+     if params[:doubleChart].to_s.length > 0 then
+        @chart2 = graphData.doubleChart
+     end
+     if params[:tripleChart].to_s.length > 0 then
+        @chart3 = graphData.multipleChart
+     end
+  end
+
   def order
       y_name_1 = "Actual Price"
       y_name_2 = "Sold Price"
@@ -40,7 +70,7 @@ class Administrator::ApplicationController < ApplicationController
   def food
       y_name_1 = "Actual Price"
       y_name_2 = "Offer Price"
-      chart_type = "pie"
+      chart_type = "bar"
       y_data_1 = Food.select("actualPrice").group_by{|o| o.actualPrice}.keys
       puts(y_data_1)
       y_data_2 = Food.select("offerPrice").group_by{|o| o.offerPrice}.keys
