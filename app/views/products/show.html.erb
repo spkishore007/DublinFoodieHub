@@ -1,11 +1,6 @@
 <p id="notice"><%= notice %></p>
-  <strong>PizzaName</strong>
-  <%= @product.name %>
-  <strong>Cost</strong>
-  <%= @product.price%>
- 
-  
-  <hi>Select your Toppings</hi>
+  <br>
+  <h3>Select your Toppings</h3>
   <div class="field">
    Mozarella:
   <%= check_box_tag 'product[windows]', 'Mozarella' %>
@@ -38,7 +33,59 @@
    BBQ sauce:
   <%= check_box_tag 'product[psensor]', 'BBQ' %>
   </div>
+  
+  <hr>
+  <br>
+  <h4> Food Information's :</h4>
+  <p>
+  <strong>PizzaName</strong>
+  <%= @product.name %>
+  </p>
+  <p>
+  <strong>Cost</strong>
+  <%= @product.offerPrice%>
+  </p>
+  
+  
+  
+  <p>
+  <strong>Foodtype:</strong>
+  <%= @product.foodType %>
+  </p>
 
+ <p>
+  <strong>Foodsize:</strong>
+  <%= @product.foodSize %>
+  </p>
+  <p>
+  <strong>Ingredients:</strong>
+  <%= @product.ingredients %>
+  </p>
+  
+  <p>
+  <strong>description:</strong>
+  <%= @product.description %>
+  </p>
+  <p>
+  <strong>allergens:</strong>
+  <%= @product.allergens %>
+  </p>
+  <p>
+  <strong>calorie:</strong>
+  <%= @product.calorie %>
+  </p>
+
+  <p>
+  <strong>Original price:</strong>
+  <%= @product.price %>
+  </p>
+
+  <p>
+  <strong>Quantityavailable:</strong>
+  <%= @product.quantityAvailable %>
+  </p>
+<br>
+<hr>
 <h2>Reviews</h2>
 <% @product.comments.each do |comment| %>
 <p>
