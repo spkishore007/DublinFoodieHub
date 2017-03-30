@@ -7,6 +7,7 @@ end
 gem 'lazy_high_charts'
 gem 'pizza_chart', '~> 2.0.4'
 gem 'rails_admin'
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 
 gem 'erubis'
 
@@ -18,6 +19,7 @@ gem 'awesome_print', '~> 1.7'
 gem 'pundit', '~> 1.1'
 gem 'pry', '~> 0.10.4'
 gem 'brakeman', '~> 3.4', '>= 3.4.1'
+gem 'simple_form', '~> 3.4'
 
 gem 'sqlite3'
 gem 'pg', '~> 0.20.0'
