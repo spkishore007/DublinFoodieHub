@@ -36,12 +36,20 @@ class PizzaDecorator
 		@description = "No Toppings"
 		@allergens=""
 		@ingredients=""
-		@calorie=""
+		@calorie= 0
 	end
 
 
 	def price
 		return @extra_price + @real_pizza.price
+	end
+	
+	 def extra_price
+		return @extra_price
+	end
+	
+	def type
+		return @type
 	end
 
 	def description
@@ -57,7 +65,7 @@ class PizzaDecorator
 	end	
 	
 	def calorie
-		return @calorie +" "+ @real_pizza.calorie
+		return @calorie.to_i + @real_pizza.calorie.to_i
 	end
 	
 end
@@ -71,6 +79,7 @@ class MozarellaDecorator < PizzaDecorator
 		@allergens="Ristorante Pizza Mozzarella WHEAT,MOZZARELLA CHEESE,EDAM CHEESE"
 		@ingredients="Mozzarella wheat,tomato puree,vegetable oil,yeast,basil,hydrolysed vegetable protein"
 		@calorie=10
+		@type = "Mozarella"
 	end
 
 end
@@ -84,6 +93,7 @@ class ParmesanDecorator < PizzaDecorator
 		@allergens="Milk"
 		@ingredients="Chicken,Provolone,oregano"
 		@calorie=15
+		@type = "Parmesan"
 	end
 end
 
@@ -95,6 +105,7 @@ class PepperoniDecorator < PizzaDecorator
 		@allergens="Gluten,Mustard"
 		@ingredients="Ricotta Cheese,Chopped fresh thyme,pepperoni-salami"
 		@calorie=20
+		@type = "Pepperoni"
 	end
 	
 end
@@ -107,6 +118,7 @@ class CapicolloDecorator < PizzaDecorator
 		@allergens="yeast,wheat"
 		@ingredients="Enriched wheat flour, water, canola oil, yeast, salt, sugar."
 		@calorie=25
+		@type = "Capicollo"
 	end
 	
 
@@ -120,6 +132,7 @@ class ChipotleDecorator < PizzaDecorator
 		@allergens="poblano pepper,black beans"
 		@ingredients="black beans,corn,chopped cilantro,poblano pepper and mix."
 		@calorie=22
+		@type = "Chipotle"
 	end
 	end
 	
@@ -131,6 +144,7 @@ class ChipotleDecorator < PizzaDecorator
 		@allergens="bell peppers"
 		@ingredients="bell peppers,artichoke hearts and feta cheese."
 		@calorie=13
+		@type = "Pesto"
 	end
 	end
 	
@@ -142,6 +156,7 @@ class ChipotleDecorator < PizzaDecorator
 		@allergens="garlic,olive oil"
 		@ingredients="combine tomatoes, onion, garlic, olive oil"
 		@calorie=15
+		@type = "Bruschetta"
 	end
 	
 
@@ -155,6 +170,7 @@ class BbqDecorator < PizzaDecorator
 		@allergens="Wheat"
 		@ingredients="Brisket burnt ends,bacon, drizzled Cola BBQ sauce"
 		@calorie=28
+		@type = "Bbq"
 	end
 	
 

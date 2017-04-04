@@ -1,41 +1,60 @@
 <p id="notice"><%= notice %></p>
   <br>
+
+  <%= hidden_field_tag :product_id,@product.id %>
+  <%= hidden_field_tag :store_detail_id,@product.store_detail_id%>
+
+
   <h3>Select your Toppings</h3>
-  <div class="field">
+   <div class="field">
+  <% mozarella = @product.tapping.select{|ps| ps.type == "Mozarella" }.present? ? true : false if @product.tapping.present? %>
    Mozarella:
-  <%= check_box_tag 'product[windows]', 'Mozarella' %>
+  <%= check_box_tag 'product[mozarella]', value = "Mozarella", checked = mozarella, options = {class: "topping"} %>
   </div>
   <div class="field">
+   <% parmesan = @product.tapping.select{|ps| ps.type == "Parmesan" }.present? ? true : false if @product.tapping.present? %>
+ 
    Parmesan Cheese:
-  <%= check_box_tag 'product[mirror]', 'Parmesan' %>
+  <%= check_box_tag 'product[parmesan]', value = "Parmesan", checked = parmesan, options = {class: "topping"} %>
   </div>
   <div class="field">
+ <% pepperoni = @product.tapping.select{|ps| ps.type == "Pepperoni" }.present? ? true : false if @product.tapping.present? %>
    Pepperoni:
-  <%= check_box_tag 'product[psensor]', 'Pepperoni' %>
+  <%= check_box_tag 'product[pepperoni]', value = "Pepperoni", checked = pepperoni, options = {class: "topping"}%>
   </div
    <div class="field">
+   <% capicollo = @product.tapping.select{|ps| ps.type == "Capicollo" }.present? ? true : false if @product.tapping.present? %>
    Capicollo:
-  <%= check_box_tag 'product[windows]', 'Capicollo' %>
+  <%= check_box_tag 'product[capicollo]', value = "Capicollo", checked = capicollo, options = {class: "topping"} %>
   </div>
   <div class="field">
+   <% chipotle = @product.tapping.select{|ps| ps.type == "Chipotle" }.present? ? true : false if @product.tapping.present? %>
    Chipotle Chicken:
-  <%= check_box_tag 'product[mirror]', 'Chipotle' %>
+  <%= check_box_tag 'product[chipotle]', value = "Chipotle", checked = chipotle, options = {class: "topping"} %>
   </div>
   <div class="field">
+   <% pesto = @product.tapping.select{|ps| ps.type == "Pesto" }.present? ? true : false if @product.tapping.present? %>
     Pesto sauce:
-   <%= check_box_tag 'product[psensor]', 'Pesto' %>
+   <%= check_box_tag 'product[pesto]', value = "Pesto", checked = pesto, options = {class: "topping"}%>
   </div
    <div class="field">
+   <% bruschetta = @product.tapping.select{|ps| ps.type == "Bruschetta" }.present? ? true : false if @product.tapping.present? %>
    Bruschetta sauce:
-  <%= check_box_tag 'product[psensor]', 'Bruschetta' %>
+  <%= check_box_tag 'product[bruschetta]', value = "Bruschetta", checked = bruschetta, options = {class: "topping"} %>
   </div
+  <br></br>
    <div class="field">
+   <% bbq = @product.tapping.select{|ps| ps.type == "BBQ" }.present? ? true : false if @product.tapping.present? %>
    BBQ sauce:
-  <%= check_box_tag 'product[psensor]', 'BBQ' %>
+  <%= check_box_tag 'product[bbq]', value = "BBQ", checked = bbq, options = {class: "topping"} %>
   </div>
-  
+  <div>
+   <h4>Reset Topping:
+  <%= check_box_tag 'reset', 'reset',false,class: "reset" %></h4>
+  </div>
   <hr>
   <br>
+
   <h4> Food Information's :</h4>
   <p>
   <strong>PizzaName</strong>
@@ -58,26 +77,34 @@
   <%= @product.foodSize %>
   </p>
   <p>
+
+
   <strong>Ingredients:</strong>
-  <%= @product.ingredients %>
+  <%= @product.tapping.collect(&:ingredients).join(' ') if @product.tapping.present? %>
+  <%#= @product.ingredients %>
   </p>
   
   <p>
   <strong>description:</strong>
-  <%= @product.description %>
+  <%= @product.tapping.collect(&:description).join(' ') if @product.tapping.present? %>
+
   </p>
   <p>
   <strong>allergens:</strong>
-  <%= @product.allergens %>
+   <%= @product.tapping.collect(&:allergens).join(' ') if @product.tapping.present? %>
   </p>
   <p>
   <strong>calorie:</strong>
-  <%= @product.calorie %>
+  <% calorie = 0 %>
+  <%= @product.tapping.map {|tap| calorie += tap.calorie }.last if @product.tapping.present? %>
+  <%#= @product.calorie %>
   </p>
 
   <p>
   <strong>Original price:</strong>
-  <%= @product.price %>
+  <% price = @product.price %>
+  <%= value = @product.tapping.map {|tap| price += tap.extra_price }.last if @product.tapping.present? %>
+  <%= price ||= @product.price if value.blank? %>
   </p>
 
   <p>
@@ -99,8 +126,61 @@
 </p>
 <% end %>
 
+<script type="text/javascript">
+   $(document).ready(function() {
+    //set initial state.
+    //$('#textbox1').val($(this).is(':checked'));
 
+    $('.topping').change(function() {
+        if($(this).is(":checked")) {
+          product_id = $("#product_id").val();
+          store_detail_id = $("#store_detail_id").val();
+             $.ajax({
+                type: "POST",
+                url: "/store_details/"+store_detail_id+"/products/"+product_id+"/make_pizza",
+                data: {topping: $(this).val()}, //--> send id of checked checkbox on other page
+                success: function(data) {
+                    alert('Topping are adding');
+                    alert(data);
+                    location.reload();
+                },
+                 error: function() {
+                    alert('it broke');
+                },
+                complete: function() {
+                    alert('Added Toppings');
+                }
+            });
+        }
+        //$('#textbox1').val($(this).is(':checked'));        
+    });
+
+     $('.reset').change(function() {
+        if($(this).is(":checked")) {
+          product_id = $("#product_id").val();
+          store_detail_id = $("#store_detail_id").val();
+
+             $.ajax({
+                type: "DELETE",
+                url: "/store_details/"+store_detail_id+"/products/"+product_id+"/reset_topping",
+                data: {topping: $(this).val()}, //--> send id of checked checkbox on other page
+                success: function(data) {
+                    alert('Resetting Toppings');
+                    alert(data);
+                    location.reload();
+                },
+                 error: function() {
+                    alert('it broke');
+                },
+                complete: function() {
+                    alert('Toppings Reset');
+                }
+            });
+        }
+        //$('#textbox1').val($(this).is(':checked'));        
+    });
+});
+</script>
 <%= link_to 'Edit', edit_store_detail_product_path(@store_detail,@product) %> |
 <%= link_to 'Back', store_detail_products_path(@store_detail) %> |
 <%= link_to "Pizza Comments", product_comments_path(@product) %>
-

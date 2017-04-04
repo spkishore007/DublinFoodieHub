@@ -30,16 +30,14 @@ Rails.application.routes.draw do
   
   resources :store_details do
     resources :addons
-    resources :products 
-
+    resources :products do
+    resources :comments
+    post "make_pizza" => "products"
+    delete "reset_topping" => "products"
   end
-  
-   resources :products do
-      resources :comments
   end
   
   resources :products
-  get "make_pizza" => "products/make_pizza", :as => "make_pizza"
   resource :cart, only: [:show]
   resources :order_items, only: [:create, :update, :destroy]
   root to: "products#index"

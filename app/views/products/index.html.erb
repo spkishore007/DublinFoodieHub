@@ -7,5 +7,8 @@
     <% end %>
   </div>
 </div>
-<%= link_to 'New Food', new_store_detail_product_path %>
-<%= link_to 'Back to Store', @store_detail %>
+<%= link_to 'New Food', new_store_detail_product_path, class: "btn btn-primary" %>
+<%= link_to 'Back to Store', @store_detail, class: "btn btn-primary" %>
+<div class="text-center">
+   <%= will_paginate @products %>
+</div>

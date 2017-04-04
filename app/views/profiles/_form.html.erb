@@ -1,4 +1,4 @@
-<%= form_for(profile) do |f| %>
+<%= simple_form_for(profile) do |f| %>
   <% if profile.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
@@ -10,63 +10,15 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :firstName %>
-    <%= f.text_field :firstName %>
-  </div>
-
-  <div class="field">
-    <%= f.label :lastName %>
-    <%= f.text_field :lastName %>
-  </div>
-
-  <div class="field">
-    <%= f.label :building %>
-    <%= f.text_field :building %>
-  </div>
-
-  <div class="field">
-    <%= f.label :street %>
-    <%= f.text_field :street %>
-  </div>
-
-  <div class="field">
-    <%= f.label :city %>
-    <%= f.text_field :city %>
-  </div>
-
-  <div class="field">
-    <%= f.label :pincode %>
-    <%= f.number_field :pincode %>
-  </div>
-
-  <div class="field">
-    <%= f.label :mobile %>
-    <%= f.number_field :mobile %>
-  </div>
-
-  <div class="field">
-    <%= f.label :dateOfBirth %>
-    <%= f.date_select :dateOfBirth %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :idProof %>
-    <%= f.text_field :idProof %>
-  </div>
-
-  <div class="field">
-    <%= f.label :member_id %>
-    <%= f.text_field :member_id %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.input :firstName, label: 'First Name',:input_html => {:maxlength =>2,:style=> 'width: 300px'}%>
+  <%= f.input :lastName, label: 'Last Name',:input_html => {:maxlength =>2,:style=> 'width: 300px'} %>
+  <%= f.input :building, label: 'Building',:input_html => {:maxlength =>2,:style=> 'width: 300px'} %>
+  <%= f.input :street, label: 'Street',:input_html => {:maxlength =>2,:style=> 'width: 300px'} %>
+  <%= f.input :city, label: 'City',:input_html => {:maxlength =>2,:style=> 'width: 300px'} %>
+  <%= f.input :pincode, label: 'Pin Code',:input_html => {:maxlength =>2,:style=> 'width: 300px'} %>
+  <%= f.input :mobile, label: 'Mobile',:input_html => {:maxlength =>2,:style=> 'width: 300px'} %>
+  <%= f.input :dateOfBirth, label: 'Date Of Birth',:input_html => {:maxlength =>2,:style=> 'width: 300px'} %>
+  <%= f.input :idProof, label: 'Id Proof',:input_html => {:maxlength =>2,:style=> 'width: 300px'} %>
+  <%= f.input :email,label:'Email', placeholder: 'user@domain.com',:input_html => {:maxlength =>2,:style=> 'width: 300px'} %>
+  <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AuthProject</title>
+    <title>Dublin Pizza Shops</title>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <% if request.ssl? %>
     <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' %>
@@ -22,12 +22,13 @@ ul.topnav {
     padding: 0;
     overflow: hidden;
     background-color: #333;
+    text-align: center;
 }
 
 ul.topnav li {float: left;}
 
 ul.topnav li a {
-    display: block;
+    display:inline-block;
     color: white;
     text-align: center;
     padding: 14px 16px;
@@ -36,7 +37,8 @@ ul.topnav li a {
 
 ul.topnav li a:hover:not(.active) {background-color: #111;}
 
-ul.topnav li a.active {background-color: #4CAF50;}
+ul.topnav li a.active {background-color: #4CAF50;   display:inline-block;
+    float: none;  text-align: center; }
 
 ul.topnav li.right {float: right;}
 
@@ -52,6 +54,7 @@ body {
     <ul class="topnav">
         <tr>
          <li class="active"><%= link_to "Home", root_path %></li>
+          <li class="active"><%= link_to "Profile", signedinuserprofile_path %></li>
         <% unless member_signed_in? %>
           <li class="right"><%= link_to "Sign up", new_member_registration_path %></li>
           <li class="right"><%= link_to "Log in", new_member_session_path %></li> 
@@ -68,7 +71,7 @@ body {
          <tr>
          <%if member_signed_in? %>
           <li class="right"><%= link_to "Log out", destroy_member_session_path, method: :delete %></li>
-          <li class="right"><%= link_to current_member.email,signedinuserprofile_path %><li>
+          <li class="right"><%= link_to current_member.email,edit_member_registration_path %><li>
          <% end %>
          </tr>
 

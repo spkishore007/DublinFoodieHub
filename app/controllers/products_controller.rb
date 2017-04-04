@@ -1,9 +1,12 @@
 require 'pizza_decorator'
 
 class ProductsController < ApplicationController
+  
+  before_action :set_product, only: [:make_pizza,:reset_topping]
+   
   def index
     @store_detail = StoreDetail.find(params[:store_detail_id])
-    @products = Product.all
+    @products = @store_detail.products.paginate(page: params[:page], per_page: 2)
     @order_item = current_order.order_items.new
  
   end
@@ -50,6 +53,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /foods/1.json
   def update
      @store_detail = StoreDetail.find(params[:store_detail_id])
+    
      @product = Product.find(params[:id])
     respond_to do |format|
       if @product.update(product_params)
@@ -65,54 +69,56 @@ class ProductsController < ApplicationController
   # DELETE /foods/1
   # DELETE /foods/1.json
   def destroy
-     @store_detail = StoreDetail.find(params[:store_detail_id])
-     @product = Product.find(params[:id])
-     @product.destroy
+      @store_detail = StoreDetail.find(params[:store_detail_id])
+      @product = Product.find(params[:id])
+      @product.destroy
     respond_to do |format|
       format.html { redirect_to store_detail_products_path(@store_detail), notice: 'Food detail was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
   
-  def create_pizza
+  def make_pizza
      myPizza = SimplePizza.new(@product.price,@product.name,@product.allergens,@product.ingredients,@product.calorie)
      # add the extra features to the new car
-     if params[:product][:Mozarella].to_s.length > 0 then
+     if params[:topping].to_s == "Mozarella" then
      myPizza = MozarellaDecorator.new(myPizza)
      end
-     if params[:product][:Parmesan].to_s.length > 0 then
+     if params[:topping].to_s == "Parmesan" then
      myPizza = ParmesanDecorator.new(myPizza)
      end
-     if params[:product][:Pepperoni].to_s.length > 0 then
+     if params[:topping].to_s == "Pepperoni" then
      myPizza = PepperoniDecorator.new(myPizza)
      end
-     if params[:product][:Capicollo].to_s.length > 0 then
+     if params[:topping].to_s == "Capicollo" then
      myPizza = CapicolloDecorator.new(myPizza)
      end
-     if params[:product][:Chipotle].to_s.length > 0 then
+     if params[:topping].to_s == "Chipotle" then
      myPizza = ChipotleDecorator.new(myPizza)
      end
-     if params[:product][:Pesto].to_s.length > 0 then
+     if params[:topping].to_s == "Pesto" then
      myPizza = PestoDecorator.new(myPizza)
      end
-     if params[:product][:Bruschetta].to_s.length > 0 then
-     myPizza = BruschettaDecoratorr.new(myPizza)
+     if params[:topping].to_s == "Bruschetta" then
+     myPizza = BruschettaDecorator.new(myPizza)
      end
-     if params[:product][:BBQ].to_s.length > 0 then
+     if params[:topping].to_s == "BBQ" then
      myPizza = BbqDecorator.new(myPizza)
      end
      ## populate the cost and the description details
-     @product.price = myPizza.price
-     @product.description = myPizza.description
-     @product.ingredients=myPizza.ingredients
-     @product.allergens= mypizza.allergens
-     @product.calorie= mypizza.calorie
+     @product.tapping = Array.new unless @product.tapping.present?
+     @product.tapping << myPizza
+     @product.save
   end  
+
+  def reset_topping
+    @product.update_attributes(tapping: nil)
+  end 
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+      @product = Product.find(params[:product_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

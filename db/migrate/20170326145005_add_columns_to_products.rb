@@ -7,7 +7,7 @@ class AddColumnsToProducts < ActiveRecord::Migration[5.1]
     add_column :products, :quantityAvailable, :number
     add_column :products, :allergens, :string
     add_column :products, :ingredients, :string
-    add_column :products, :calorie, :string
+    add_column :products, :calorie, :number
     add_column :products, :hit, :number
   end
 end
