@@ -1,18 +1,22 @@
 require 'pizza_decorator'
 
+
 class ProductsController < ApplicationController
   
   before_action :set_product, only: [:make_pizza,:reset_topping]
    
   def index
     @store_detail = StoreDetail.find(params[:store_detail_id])
-    @products = @store_detail.products.paginate(page: params[:page], per_page: 2)
+    @products =ProductPolicy::Scope.new(current_user, @store_detail.products).resolve.paginate(page: params[:page], per_page: 2)
+    authorize @products, :index?
     @order_item = current_order.order_items.new
+  
  
   end
   def show
     @store_detail = StoreDetail.find(params[:store_detail_id])
     @product = @store_detail.products.find(params[:id]) 
+    authorize @product, :show?
     @order_item = current_order.order_items.new
   end
 
@@ -21,13 +25,14 @@ class ProductsController < ApplicationController
     
    @store_detail = StoreDetail.find(params[:store_detail_id])
    @product = @store_detail.products.build
-  
+   authorize @product, :new?
   end
 
   # GET /foods/1/edit
   def edit
     @store_detail = StoreDetail.find(params[:store_detail_id])
     @product = @store_detail.products.find(params[:id])
+    authorize @product, :edit?
   end
 
   # POST /foods
@@ -35,7 +40,8 @@ class ProductsController < ApplicationController
   def create
     
     @store_detail = StoreDetail.find(params[:store_detail_id])
-    @product = @store_detail.products.build(params.require(:product).permit(:name, :price, :active, :description, :foodType, :foodSize, :offerPrice, :quantityAvailable, :allergens, :ingredients, :calorie,  :hit))  
+    @product = @store_detail.products.build(params.require(:product).permit(:name, :price, :active, :description, :foodType, :foodSize, :offerPrice, :quantityAvailable, :allergens, :ingredients, :calorie,  :hit))
+    authorize @product, :create?
    # @food = StoreDetail.find(params[:store_detail_id]).foodDetails.build(params.require(:food).permit(:foodName, :foodType, :foodSize, :actualPrice, :offerPrice, :quantityAvailable, :hit))  
 
     respond_to do |format|
@@ -53,8 +59,8 @@ class ProductsController < ApplicationController
   # PATCH/PUT /foods/1.json
   def update
      @store_detail = StoreDetail.find(params[:store_detail_id])
-    
      @product = Product.find(params[:id])
+     authorize @product, :update?
     respond_to do |format|
       if @product.update(product_params)
         format.html { redirect_to store_detail_product_url, notice: 'Food detail was successfully updated.' }
@@ -71,6 +77,7 @@ class ProductsController < ApplicationController
   def destroy
       @store_detail = StoreDetail.find(params[:store_detail_id])
       @product = Product.find(params[:id])
+      authorize @product, :destroy?
       @product.destroy
     respond_to do |format|
       format.html { redirect_to store_detail_products_path(@store_detail), notice: 'Food detail was successfully destroyed.' }
@@ -106,6 +113,7 @@ class ProductsController < ApplicationController
      myPizza = BbqDecorator.new(myPizza)
      end
      ## populate the cost and the description details
+     
      @product.tapping = Array.new unless @product.tapping.present?
      @product.tapping << myPizza
      @product.save

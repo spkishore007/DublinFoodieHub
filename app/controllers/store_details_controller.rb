@@ -6,28 +6,29 @@ class StoreDetailsController < ApplicationController
   # GET /store_details
   # GET /store_details.json
   def index
-    @store_details = StoreDetailPolicy::Scope.new(current_user, StoreDetail).resolve
+    @store_details = StoreDetailPolicy::Scope.new(current_user, StoreDetail).resolve 
     #@store_details = StoreDetail.order(store_name: :asc)
     #authorize current_user, :index?
-    authorize @store_details, :index?
+   authorize @store_details, :index?
   end
 
   # GET /store_details/1
   # GET /store_details/1.json
   def show
-   @store_details =StoreDetailPolicy.new(current_user, @store_detail).new?
+  # @store_details =StoreDetailPolicy.new(current_user, @store_detail).new?
    # @store_detail = StoreDetail.find(params[:id])
-    authorize @store_detail, :show?
+   authorize @store_detail, :show?
   end
 
   # GET /store_details/new
   def new
     @store_detail = StoreDetail.new
-    authorize @store_detail, :new?
+    #authorize @store_detail, :new?
   end
 
   # GET /store_details/1/edit
   def edit
+   # StoreDetailPolicy.new(current_user,StoreDetail).edit? 
     authorize @store_detail, :edit?
   end
 

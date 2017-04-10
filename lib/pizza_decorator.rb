@@ -31,6 +31,7 @@ end
 
 class PizzaDecorator
 	def initialize(real_pizza)
+		binding.pry
 		@real_pizza = real_pizza
 		@extra_price = 0
 		@description = "No Toppings"
@@ -87,7 +88,9 @@ end
 
 class ParmesanDecorator < PizzaDecorator
 	def initialize(real_pizza)
+			binding.pry
 		super(real_pizza)
+	
 		@description = "Added Parmesan Toppings"
 		@extra_price = 100
 		@allergens="Milk"

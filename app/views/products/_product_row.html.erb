@@ -19,6 +19,6 @@
     </div>
   </div>
         <td><%= link_to 'View and Customise my pizza', store_detail_product_path(@store_detail, product), class: "btn btn-primary" %></td>
-        <td><%= link_to 'Edit', edit_store_detail_product_path(@store_detail, product), class: "btn btn-primary" %></td>
-        <td><%= link_to 'Destroy', store_detail_product_path(@store_detail, product), method: :delete, data: { confirm: 'Are you sure to remove this pizza?' }, class: "btn btn-danger"%></td>
+        <td><%= link_to 'Edit Pizza', edit_store_detail_product_path(@store_detail, product), class: "btn btn-primary"  if policy(product).edit? %></td>
+        <td><%= link_to 'Remove Pizza', store_detail_product_path(@store_detail, product), method: :delete, data: { confirm: 'Are you sure to remove this pizza?' }, class: "btn btn-danger"  if policy(product).destroy?%></td>
 </div>

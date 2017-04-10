@@ -14,8 +14,7 @@ class MemberMailer < ApplicationMailer
     end
   
     def order_email(order)
-  	@member = order.member
-    mail(to: @member.email, subject: 'Sample Email')
+    mail(to: "abcs@gmail.com", subject: 'Sample Email')
     end
   
 end

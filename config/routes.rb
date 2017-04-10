@@ -39,6 +39,13 @@ Rails.application.routes.draw do
   
   resources :products
   resource :cart, only: [:show]
+  
+  resources :order do 
+   post "confirmed" => "carts"
+   post "canceled" => "carts"
+   get "payment_confirmation" => "carts"
+  end
+  
   resources :order_items, only: [:create, :update, :destroy]
   root to: "products#index"
   

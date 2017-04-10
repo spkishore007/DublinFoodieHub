@@ -16,3 +16,9 @@
     <%= render 'carts/cart_row', product: order_item.product, order_item: order_item, show_total: true  %>
   <% end %>
 <% end %>
+<%= hidden_field_tag :order_id ,current_order.id %>
+
+<div class="pull-right">
+<button id= "cancel" class="btn btn-danger btn-lg">Clear Cart</button>
+<button id= "confirm" class="btn btn-primary btn-lg">Confirm Your Order</button>
+</div>

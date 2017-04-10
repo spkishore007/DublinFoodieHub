@@ -8,6 +8,7 @@ class OrderItemsController < ApplicationController
     else
      @order_item = @order.order_items.new(order_item_params)
     end
+    @order.order_status_id = 1
     @order.save
     #MemberMailer.order_email(@order).deliver
     session[:order_id] = @order.id

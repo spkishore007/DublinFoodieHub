@@ -1,35 +1,33 @@
-class StoreDetailPolicy < ApplicationPolicy
-  
+class ProductPolicy < ApplicationPolicy
 
-    
- class Scope < Scope
+  class Scope < Scope
     def resolve
-        scope.order(store_name: :asc)
+      scope.all
     end
- end
-
+  end
+    
   def index?
-    true
+      true
   end
 
   def show?
-    scope.where(:id => store_detail.id).exists?
+   scope.where(:id => product.id).exists?
   end
 
   def create?
-    user.try(:admin?)
+    user.try(:admin?)||user.try(:owner?)
   end
 
   def new?
     create?
   end
 
-  def update?
+  def update
   user.try(:admin?) || user.try(:owner?)
   end
 
   def edit?
-    update?
+  user.try(:admin?) || user.try(:owner?)
   end
 
   def destroy?
@@ -38,8 +36,7 @@ class StoreDetailPolicy < ApplicationPolicy
 
   private
 
-    def store_detail
+    def product
       record
     end
-  
 end

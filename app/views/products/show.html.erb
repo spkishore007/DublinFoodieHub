@@ -181,6 +181,6 @@
     });
 });
 </script>
-<%= link_to 'Edit', edit_store_detail_product_path(@store_detail,@product) %> |
-<%= link_to 'Back', store_detail_products_path(@store_detail) %> |
-<%= link_to "Pizza Comments", product_comments_path(@product) %>
+<%= link_to 'Edit', edit_store_detail_product_path(@store_detail,@product) ,class: "btn btn-primary"  if policy(@product).edit?%> |
+<%= link_to 'Back', store_detail_products_path(@store_detail),class: "btn btn-primary"  %> |
+<%= link_to "Pizza Comments", product_comments_path(@product),class: "btn btn-primary"  %>

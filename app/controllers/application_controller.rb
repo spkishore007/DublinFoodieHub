@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
     
     def member_not_authorized
      respond_to do |format|
-     format.html { redirect_to (root_path), notice: 'You have no privileges to view' }
+     format.html { redirect_to (root_path), notice: 'You have no access rights to view' }
      end
     end
 

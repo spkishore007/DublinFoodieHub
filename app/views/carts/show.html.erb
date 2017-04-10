@@ -1,3 +1,34 @@
 <div>
   <%= render "shopping_cart" %>
 </div>
+
+<script type="text/javascript">
+  $("#confirm").click(function() {
+  	order_id = $("#order_id").val();
+  $.ajax({
+      url: "/order/"+order_id+"/confirmed",
+      type: "POST",
+      success: function (data) { 
+           alert('Your Order is Confirmed');
+          // append data to your page
+      },
+      complete: function() {
+                    alert('Continue to payment');
+                }
+  });
+});
+
+  $("#cancel").click(function() {
+  	order_id = $("#order_id").val();
+  $.ajax({
+      url: "/order/"+order_id+"/canceled",
+      type: "POST",
+      success: function (data) { 
+          alert('Your Cart will clear');
+          location.reload(true);
+          // append data to your page
+      }
+  });
+});
+
+</script>

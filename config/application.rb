@@ -14,6 +14,14 @@ module AuthProject
 
     #config.active_record.observers = :product_observer
     # force HTTPS on all environments
+    
+    #it loaded the file before object get load
+    config.to_prepare do
+    Dir[ File.expand_path(Rails.root.join("lib/*.rb")) ].each do |file|
+        require_dependency file
+    end
+   # require_dependency 'product_cache'
+    end
     config.force_ssl = true
 
   end
