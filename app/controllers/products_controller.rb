@@ -1,5 +1,6 @@
 require 'pizza_decorator'
-
+require 'product_home_template'
+require 'medical_strategy'
 
 class ProductsController < ApplicationController
   
@@ -10,14 +11,59 @@ class ProductsController < ApplicationController
     @products =ProductPolicy::Scope.new(current_user, @store_detail.products).resolve.paginate(page: params[:page], per_page: 2)
     authorize @products, :index?
     @order_item = current_order.order_items.new
-  
- 
+    basic = CheckByNormal.new(params[:store_detail_id])
+    #@products = basic.with_page(params[:page])
+    rank = CheckByRank.new(params[:store_detail_id])
+    @record_products = rank.without_page(current_member)
+    hit = CheckByHit.new(params[:store_detail_id])
+    @product_by_hits = hit.with_page(params[:page])
+    self.medical_page
+    #self.price_change
   end
+  
+  def price_change
+    order = OrderSend.new()
+    result = Pricing.new(order)
+    puts(result)
+    order.notify_observers
+    puts("Pricing is completed. =========================================== Now count update and hit update is going to perform")
+  end
+  
+  def product_refresh_qty
+    @refresh = ProductUpdateSingleton.instance
+    @refresh_qty = @refresh.refresh_quantity
+    puts(@refresh_qty)
+  end
+  
+  def product_count_update
+    @product_count = ProductUpdateSingleton.instance
+    @count_up = @product_count.count_update
+    puts(@count_up)
+  end
+  
+  def medical_page
+   @user_medical_check = current_member.profile
+   @medical_confirmation = Medical.find_by idProof: @user_medical_check.idProof
+    if (@medical_confirmation.medicalCondition == "high")
+      @medical_high = MedicalCheck.new(MediHigh.new(@medical_confirmation))
+      @customer_data = @medical_high.alltogether
+    elsif (@medical_confirmation.medicalCondition == "medium")
+      @medical_medium = MedicalCheck.new(MediMed.new(@medical_confirmation))
+      @customer_data = @medical_medium.alltogether
+    else
+      @medical_low = MedicalCheck.new(MediLow.new(@medical_confirmation))
+      @customer_data = @medical_low.alltogether
+    end
+  end
+  
   def show
     @store_detail = StoreDetail.find(params[:store_detail_id])
     @product = @store_detail.products.find(params[:id]) 
     authorize @product, :show?
     @order_item = current_order.order_items.new
+    @click_update = current_member.clicks.new
+    @click_update.product_identity = @product.id
+    @click_update.save
   end
 
   # GET /foods/new

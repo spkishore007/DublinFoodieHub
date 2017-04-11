@@ -8,6 +8,12 @@ gem 'lazy_high_charts'
 gem 'pizza_chart', '~> 2.0.4'
 gem 'rails_admin'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
+gem 'graph_decorator'
+gem 'medical_strategy'
+gem 'pricing_observer'
+gem 'product_home_template'
+gem 'product_update_single'
+gem 'sales_and_orders_decorator'
 
 gem 'erubis'
 
@@ -24,7 +30,7 @@ gem 'better_errors', '~> 2.1', '>= 2.1.1'
 gem 'will_paginate', '~> 3.1', '>= 3.1.5'
 gem 'bootstrap-will_paginate', '~> 0.0.11'
 
-gem 'sqlite3'
+#gem 'sqlite3'
 gem 'pg', '~> 0.20.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'

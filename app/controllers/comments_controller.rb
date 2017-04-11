@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
   # GET /comments.json
   def index
      @product = Product.find(params[:product_id])
+     @store_detail = StoreDetail.find(@product.store_detail_id)
      puts("methods of index in food comments" ,@food.methods)
      @comments = @product.comments
     

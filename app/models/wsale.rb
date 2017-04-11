@@ -1,0 +1,2 @@
+class Wsale < ApplicationRecord
+end

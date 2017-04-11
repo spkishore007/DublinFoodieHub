@@ -114,6 +114,7 @@
 <br>
 <hr>
 <h2>Reviews</h2>
+</p> Overall Ratings : <% if @product.comments.count>0 %> <%= (@product.comments.sum("rating"))/@product.comments.count %> <% else %> <%= 0 %> <% end %> </p>
 <% @product.comments.each do |comment| %>
 <p>
   <strong>Comment:</strong>

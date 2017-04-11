@@ -3,23 +3,47 @@ require 'graph_decorator'
 
 class Administrator::ApplicationController < ApplicationController
   
-  # GET /cars/1
-  # GET /cars/1.json
   def getdata
   end
   
   def showdata
      simpleGraph = BasicGraph.new(params[:chart])
-     if params[:table] == 'sales' then
-      graphData = SalesDecorator.new(simpleGraph)
+     if params[:table] == 'dsales' then
+      graphData = DSalesDecorator.new(simpleGraph)
      end
-     if params[:table] == 'food' then
-      graphData = FoodDecorator.new(simpleGraph)
+     if params[:table] == 'dsalesoffer' then
+      graphData = DSaleOfferDecorator.new(simpleGraph)
      end
-     if params[:table] == 'order' then
-      graphData = OrderDecorator.new(simpleGraph)
+     if params[:table] == 'dsalestype' then
+      graphData = DSaleTypeDecorator.new(simpleGraph)
      end
-     
+     if params[:table] == 'wsales' then
+      graphData = WSalesDecorator.new(simpleGraph)
+     end
+     if params[:table] == 'wsalesoffer' then
+      graphData = WSaleOfferDecorator.new(simpleGraph)
+     end
+     if params[:table] == 'wsalestype' then
+      graphData = WSaleTypeDecorator.new(simpleGraph)
+     end
+     if params[:table] == 'msales' then
+      graphData = MSalesDecorator.new(simpleGraph)
+     end
+     if params[:table] == 'msalesoffer' then
+      graphData = MSaleOfferDecorator.new(simpleGraph)
+     end
+     if params[:table] == 'msalestype' then
+      graphData = MSaleTypeDecorator.new(simpleGraph)
+     end
+     if params[:table] == 'pizza' then
+      graphData = ProductDecorator.new(simpleGraph)
+     end
+     if params[:table] == 'hit' then
+      graphData = ProductByHitDecorator.new(simpleGraph)
+     end
+     if params[:table] == 'customer' then
+      graphData = ReturningCustomers.new(simpleGraph)
+     end
      if params[:singleChart].to_s.length > 0 then
         @chart1 = graphData.singleChart
         puts "55555555555555555555555"
