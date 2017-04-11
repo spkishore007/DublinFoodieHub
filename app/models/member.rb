@@ -2,9 +2,9 @@ class Member < ApplicationRecord
   has_many :established_stores,class_name:"StoreDetail",dependent: :destroy
   has_one :profile,dependent: :destroy
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # :confirmable, and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :trackable, :validatable, password_length: 9..128
+         :recoverable, :trackable, :validatable,:timeoutable,password_length: 9..128
          
    validate :strong_password_check
    

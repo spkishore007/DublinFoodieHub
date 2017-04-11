@@ -23,6 +23,6 @@ module AuthProject
    # require_dependency 'product_cache'
     end
     config.force_ssl = true
-
+ 
   end
 end
