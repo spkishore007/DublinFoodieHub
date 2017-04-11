@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  userName: MyString
+  age: 1
+  medicalCondition: MyString
+  disease: MyString
+  allergens: MyString
+  mobile: 1
+  idProof: MyString
+  causedTime: 2017-04-10
+  foodHabit: MyString
+
+two:
+  userName: MyString
+  age: 1
+  medicalCondition: MyString
+  disease: MyString
+  allergens: MyString
+  mobile: 1
+  idProof: MyString
+  causedTime: 2017-04-10
+  foodHabit: MyString

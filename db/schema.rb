@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403103755) do
+ActiveRecord::Schema.define(version: 20170410194906) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "addons", force: :cascade do |t|
     t.string "addonName"
@@ -23,6 +26,14 @@ ActiveRecord::Schema.define(version: 20170403103755) do
     t.index ["store_detail_id"], name: "index_addons_on_store_detail_id"
   end
 
+  create_table "clicks", force: :cascade do |t|
+    t.integer "product_identity"
+    t.integer "member_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_clicks_on_member_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.string "comment"
     t.integer "rating"
@@ -31,6 +42,18 @@ ActiveRecord::Schema.define(version: 20170403103755) do
     t.datetime "updated_at", null: false
     t.integer "product_id"
     t.index ["food_id"], name: "index_comments_on_food_id"
+  end
+
+  create_table "dsales", force: :cascade do |t|
+    t.date "day"
+    t.integer "totalSale"
+    t.integer "profit"
+    t.integer "nonVegSale"
+    t.integer "vegSale"
+    t.integer "offeredSale"
+    t.integer "nonOfferedSale"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "foods", force: :cascade do |t|
@@ -45,6 +68,20 @@ ActiveRecord::Schema.define(version: 20170403103755) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["store_detail_id"], name: "index_foods_on_store_detail_id"
+  end
+
+  create_table "medicals", force: :cascade do |t|
+    t.string "userName"
+    t.integer "age"
+    t.string "medicalCondition"
+    t.string "disease"
+    t.string "allergens"
+    t.integer "mobile"
+    t.string "idProof"
+    t.date "causedTime"
+    t.string "foodHabit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "members", force: :cascade do |t|
@@ -77,12 +114,24 @@ ActiveRecord::Schema.define(version: 20170403103755) do
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
 
+  create_table "msales", force: :cascade do |t|
+    t.string "month"
+    t.integer "totalSale"
+    t.integer "profit"
+    t.integer "nonVegSale"
+    t.integer "vegSale"
+    t.integer "offeredSale"
+    t.integer "nonOfferedSale"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "order_items", force: :cascade do |t|
     t.integer "product_id"
     t.integer "order_id"
-    t.decimal "unit_price", precision: 12, scale: 3
+    t.integer "unit_price"
     t.integer "quantity"
-    t.decimal "total_price", precision: 12, scale: 3
+    t.integer "total_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_order_items_on_order_id"
@@ -108,7 +157,7 @@ ActiveRecord::Schema.define(version: 20170403103755) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
-    t.decimal "price", precision: 12, scale: 3
+    t.integer "price"
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -116,13 +165,14 @@ ActiveRecord::Schema.define(version: 20170403103755) do
     t.string "description"
     t.string "foodType"
     t.string "foodSize"
-    t.decimal "offerPrice"
-    t.decimal "quantityAvailable"
+    t.integer "offerPrice"
+    t.integer "quantityAvailable"
     t.string "allergens"
     t.string "ingredients"
     t.integer "calorie"
-    t.decimal "hit"
+    t.integer "hit"
     t.text "tapping"
+    t.integer "count"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -154,6 +204,18 @@ ActiveRecord::Schema.define(version: 20170403103755) do
     t.datetime "updated_at", null: false
     t.integer "member_id"
     t.index ["member_id"], name: "index_store_details_on_member_id"
+  end
+
+  create_table "wsales", force: :cascade do |t|
+    t.string "week"
+    t.integer "totalSale"
+    t.integer "profit"
+    t.integer "nonVegSale"
+    t.integer "vegSale"
+    t.integer "offeredSale"
+    t.integer "nonOfferedSale"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

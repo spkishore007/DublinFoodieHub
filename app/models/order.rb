@@ -15,7 +15,8 @@ class Order < ApplicationRecord
   def totalcartprice
     order_items.collect { |orderitem| orderitem.valid? ? (orderitem.quantity * orderitem.unit_price) : 0 }.sum
   end
-
+  
+  
 private
   def set_order_status
    # self.order_status_id = 1
