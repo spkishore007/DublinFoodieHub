@@ -54,7 +54,9 @@ body {
     <ul class="topnav">
         <tr>
          <li class="active"><%= link_to "Home", root_path %></li>
+           <% if member_signed_in? %>
           <li class="active"><%= link_to "Profile", signedinuserprofile_path %></li>
+           <%end%>
         <% unless member_signed_in? %>
           <li class="right"><%= link_to "Sign up", new_member_registration_path %></li>
           <li class="right"><%= link_to "Log in", new_member_session_path %></li> 

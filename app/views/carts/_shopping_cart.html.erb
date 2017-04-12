@@ -7,18 +7,27 @@
     </ul>
   </div>
 <% end %>
-<% if @order_items.size == 0 %>
+<% if @order_items.size == 0%>
   <p class="text-center">
-    No pizzas are added to the cart.Please <%= link_to "go back", root_path %>go back and continue shopping.
+    No pizzas are added to the cart.Please <%= link_to "go back", root_path %>and continue shopping.
   </p>
+
 <% else %>
+  <% if current_order.order_status_id == 2 %>
+   <p class="text-center">
+    Oops !!! Noooooo pizzas are added to the cart.Please <%= link_to "go back", root_path %>and continue shopping.
+  </p>
+  <% else %>
   <% @order_items.each do |order_item| %>
     <%= render 'carts/cart_row', product: order_item.product, order_item: order_item, show_total: true  %>
   <% end %>
+    <% end %>
 <% end %>
 <%= hidden_field_tag :order_id ,current_order.id %>
 
+<%unless @order_items.size == 0 or current_order.order_status_id == 2 %>
 <div class="pull-right">
 <button id= "cancel" class="btn btn-danger btn-lg">Clear Cart</button>
 <button id= "confirm" class="btn btn-primary btn-lg">Confirm Your Order</button>
 </div>
+<% end %>

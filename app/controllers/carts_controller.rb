@@ -12,12 +12,12 @@ before_action :set_order, only: [:confirmed,:canceled]
  end
  
   def payment_confirmation
-   
+     @order = current_order
   end
 
  def canceled
-	current_order.order_status_id = 4
- 	current_order.order_items.each do |order_item|
+   	current_order.order_status_id = 4
+   	current_order.order_items.each do |order_item|
     order_item.delete
     end
     @order_items = current_order.order_items
