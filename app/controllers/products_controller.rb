@@ -43,17 +43,25 @@ class ProductsController < ApplicationController
   
   def medical_page
    @user_medical_check = current_member.profile
-   @medical_confirmation = Medical.find_by idProof: @user_medical_check.idProof
-    if (@medical_confirmation.medicalCondition == "high")
-      @medical_high = MedicalCheck.new(MediHigh.new(@medical_confirmation))
-      @customer_data = @medical_high.alltogether
-    elsif (@medical_confirmation.medicalCondition == "medium")
-      @medical_medium = MedicalCheck.new(MediMed.new(@medical_confirmation))
-      @customer_data = @medical_medium.alltogether
+   if(current_member.profile)
+    @medical_confirmation = Medical.find_by idProof: @user_medical_check.idProof
+    if(@medical_confirmation)
+      if (@medical_confirmation.medicalCondition == "high")
+        @medical_high = MedicalCheck.new(MediHigh.new(@medical_confirmation))
+        @customer_data = @medical_high.alltogether
+      elsif (@medical_confirmation.medicalCondition == "medium")
+        @medical_medium = MedicalCheck.new(MediMed.new(@medical_confirmation))
+        @customer_data = @medical_medium.alltogether
+      else
+        @medical_low = MedicalCheck.new(MediLow.new(@medical_confirmation))
+        @customer_data = @medical_low.alltogether
+      end
     else
-      @medical_low = MedicalCheck.new(MediLow.new(@medical_confirmation))
-      @customer_data = @medical_low.alltogether
+     @customer_data = "Sorry for the inconvience. We couldn't find your medical details to suggest."
     end
+   else
+     redirect_to new_profile_url
+   end
   end
   
   def show
