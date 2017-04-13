@@ -3,9 +3,9 @@
 one:
   comment: MyString
   rating: 1
-  food: one
+
 
 two:
   comment: MyString
   rating: 1
-  food: two
+

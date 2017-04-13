@@ -8,7 +8,7 @@ one:
   offerPrice: 1
   quantityAvailable: 1
   hit: 1
-  storeDetail: one
+
 
 two:
   foodName: MyString
@@ -18,4 +18,4 @@ two:
   offerPrice: 1
   quantityAvailable: 1
   hit: 1
-  storeDetail: two
+

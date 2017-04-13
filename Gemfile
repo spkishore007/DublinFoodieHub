@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.3.0'
+ruby '2.3.1'
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
@@ -31,7 +31,7 @@ gem 'will_paginate', '~> 3.1', '>= 3.1.5'
 gem 'bootstrap-will_paginate', '~> 0.0.11'
 gem 'rails-observers', github: 'rails/rails-observers'
 gem 'activeresource', github: 'rails/activeresource'
-#gem 'sqlite3'
+gem 'sqlite3'
 gem 'pg', '~> 0.20.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
@@ -56,13 +56,14 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+ 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.7.0'
   gem 'selenium-webdriver'
+ gem 'minitest-reporters', '~> 1.1', '>= 1.1.14'
 end
 
 group :development do

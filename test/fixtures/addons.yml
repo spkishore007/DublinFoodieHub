@@ -5,11 +5,11 @@ one:
   addonType: MyString
   addonPrice: 1
   hit: 1
-  storeDetail: one
+
 
 two:
   addonName: MyString
   addonType: MyString
   addonPrice: 1
   hit: 1
-  storeDetail: two
+

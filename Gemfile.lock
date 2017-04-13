@@ -71,6 +71,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
+    ansi (1.5.0)
     arel (8.0.0)
     autoprefixer-rails (6.7.7.1)
       execjs
@@ -159,6 +160,11 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
+    minitest-reporters (1.1.14)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
     multi_json (1.12.1)
     nested_form (0.3.2)
     nio4r (2.0.0)
@@ -236,6 +242,7 @@ GEM
     remotipart (1.3.1)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
+    ruby-progressbar (1.8.1)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
     sales_and_orders_decorator (0.1.3)
@@ -260,6 +267,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sqlite3 (1.3.13)
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.7)
@@ -308,6 +316,7 @@ DEPENDENCIES
   lazy_high_charts
   listen (>= 3.0.5, < 3.2)
   medical_strategy
+  minitest-reporters (~> 1.1, >= 1.1.14)
   pg (~> 0.20.0)
   pizza_chart (~> 2.0.4)
   pricing_observer
@@ -326,6 +335,7 @@ DEPENDENCIES
   simple_form (~> 3.4)
   spring
   spring-watcher-listen (~> 2.0.0)
+  sqlite3
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
@@ -333,7 +343,7 @@ DEPENDENCIES
   will_paginate (~> 3.1, >= 3.1.5)
 
 RUBY VERSION
-   ruby 2.3.0p0
+   ruby 2.3.1p112
 
 BUNDLED WITH
    1.14.6
