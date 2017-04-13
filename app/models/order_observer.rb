@@ -2,15 +2,15 @@ require 'product_update_single'
 require 'pricing_observer'
 class OrderObserver
   def update(record)
-      
     if record.order_status.name == "Confirmed"
       puts("***********************qwerrty")
-       MemberMailer.order_email(@order).deliver
+       MemberMailer.order_email(record).deliver
      	record.order_items.each do |order_item|
          order_item.product.update_attribute(:quantityAvailable,order_item.product.quantityAvailable.to_i - order_item.quantity) 
         end
+
       product_count_update
-      price_change
+      #price_change
     end
   end
   

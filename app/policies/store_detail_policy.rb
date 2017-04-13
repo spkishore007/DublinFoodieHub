@@ -25,7 +25,8 @@ class StoreDetailPolicy < ApplicationPolicy
   end
 
   def update?
-  user.try(:admin?) || user.try(:owner?)
+  user.try(:admin?) || store_detail.member == user
+  
   end
 
   def edit?
@@ -33,7 +34,7 @@ class StoreDetailPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.try(:admin?) || user.try(:owner?)
+    user.try(:admin?) ||  store_detail.member == user
   end
 
   private

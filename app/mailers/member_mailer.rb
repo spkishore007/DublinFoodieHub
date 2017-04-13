@@ -2,19 +2,21 @@ class MemberMailer < ApplicationMailer
     	default from: "test68599@gmail.com"
 
    def welcome_member_email(member)
+ 
     @member = member
     @url  = "http://example.com/login"
-    mail(:to => member.email, :subject => "Welcome to My Awesome Site")
+    mail(to: "subitb.mec@gmail.com", subject: 'Welcome to Dublin Pizza Shop!!!')
    end
   
-    def welcome_store_email(member)
-    @member = member
+    def welcome_store_email(store)
+    @store = store
     @url  = "http://example.com/login"
-    mail(:to => member.email, :subject => "Your store is added.")
+    mail(to: "subitb.mec@gmail.com", subject: 'Your store added to Dublin Pizza Shop!!!')
     end
   
     def order_email(order)
-    mail(to: "abcs@gmail.com", subject: 'Sample Email')
+     @order=order
+    mail(to: "subitb.mec@gmail.com", subject: 'Sample Email')
     end
   
 end

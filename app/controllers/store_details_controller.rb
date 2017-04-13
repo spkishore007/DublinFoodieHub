@@ -39,6 +39,7 @@ class StoreDetailsController < ApplicationController
     @store_detail = StoreDetail.new(store_detail_params)
     @store_detail.member =current_member
     authorize @store_detail, :create?
+     MemberMailer.welcome_store_email(@store_detail).deliver!
     respond_to do |format|
       if @store_detail.save
         format.html { redirect_to @store_detail, notice: 'Store detail was successfully created.' }

@@ -29,7 +29,8 @@ gem 'simple_form', '~> 3.4'
 gem 'better_errors', '~> 2.1', '>= 2.1.1'
 gem 'will_paginate', '~> 3.1', '>= 3.1.5'
 gem 'bootstrap-will_paginate', '~> 0.0.11'
-
+gem 'rails-observers', github: 'rails/rails-observers'
+gem 'activeresource', github: 'rails/activeresource'
 #gem 'sqlite3'
 gem 'pg', '~> 0.20.0'
 # Use Puma as the app server

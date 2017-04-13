@@ -23,18 +23,17 @@ class ProductPolicy < ApplicationPolicy
   end
 
   def update
-  user.try(:admin?) || user.try(:owner?)
+  user.try(:admin?) || user.established_stores.ids.to_a.include?(product.store_detail_id)
   end
 
   def edit?
-  user.try(:admin?) || user.try(:owner?)
+  user.try(:admin?) || user.established_stores.ids.to_a.include?(product.store_detail_id)
   end
 
   def destroy?
-    user.try(:admin?) || user.try(:owner?)
+    user.try(:admin?) || user.established_stores.ids.to_a.include?(product.store_detail_id)
   end
 
-  private
 
     def product
       record

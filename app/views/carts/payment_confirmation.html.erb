@@ -51,10 +51,7 @@
                   <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="left" data-content="Enter the ZIP/Postal code for your credit card billing address."><i class="fa fa-question-circle"></i></a>
               </div>
           </div>
-          <button id="PayButton" class="btn btn-block btn-success submit-button" type="submit">
-              <span class="submit-button-lock"></span>
-              <span class="align-middle">Pay <%= number_to_currency(@order.subtotal,unit: "£")%></span>
-          </button>
+          <%= link_to "Pay  #{number_to_currency(@order.subtotal,unit: "£")}", root_path, class:"btn btn-block btn-success submit-button" %>
       </form>
   </div>
 </div>

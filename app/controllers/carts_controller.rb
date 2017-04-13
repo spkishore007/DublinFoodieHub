@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
 before_action :set_order, only: [:confirmed,:canceled]
-
+before_action :authenticate_member!
  def show
     @order_items = current_order.order_items
  end

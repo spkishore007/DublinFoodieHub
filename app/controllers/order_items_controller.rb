@@ -1,6 +1,9 @@
 class OrderItemsController < ApplicationController
   def create
-   
+  if(current_order.order_status_id == 2) 
+    @order=Order.new
+    @order_item = @order.order_items.new(order_item_params)
+  else
     @order = current_order
     @order_item = @order.order_items.where(product_id: params[:order_item][:product_id]).first
     if @order_item.present?
@@ -8,6 +11,7 @@ class OrderItemsController < ApplicationController
     else
      @order_item = @order.order_items.new(order_item_params)
     end
+  end
     @order.order_status_id = 1
     @order.save
     #MemberMailer.order_email(@order).deliver

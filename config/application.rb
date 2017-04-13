@@ -10,9 +10,8 @@ module AuthProject
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
-
-    #config.active_record.observers = :product_observer
+    # -- all .rb files in that directory are automatically l
+    config.active_record.observers = :member_observer
     # force HTTPS on all environments
     
     #it loaded the file before object get load

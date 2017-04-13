@@ -2,6 +2,7 @@ class Member < ApplicationRecord
   has_many :established_stores,class_name:"StoreDetail",dependent: :destroy
   has_one :profile,dependent: :destroy
   has_many :clicks
+
   # Include default devise modules. Others available are:
   # :confirmable, and :omniauthable
   devise :database_authenticatable, :registerable,
