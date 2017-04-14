@@ -3,9 +3,10 @@ class OrderItem < ApplicationRecord
   belongs_to :order
 
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  #validates :total_price, :unit_price, presence: true
   validate :any_product_present
   validate :any_order_present
-
+  
   before_save :finalize
 
   def unit_price

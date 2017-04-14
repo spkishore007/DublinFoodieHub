@@ -1,6 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  addonName: MyString
   addonType: MyString
   addonPrice: 1
+  hit: 1
+
+
+two:
+  addonType: MyString
+  addonPrice: 1
+  hit: 1
+
+
