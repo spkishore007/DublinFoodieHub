@@ -3,6 +3,7 @@ require 'test_helper'
 class ProductTest < ActiveSupport::TestCase
 test "should not save store product without name" do
   product = Product.new
+  product.store_detail=StoreDetail.new
   assert_equal(false,product.save)
 end
 

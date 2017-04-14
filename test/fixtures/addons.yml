@@ -4,12 +4,3 @@ one:
   addonName: MyString
   addonType: MyString
   addonPrice: 1
-  hit: 1
-
-
-two:
-  addonName: MyString
-  addonType: MyString
-  addonPrice: 1
-  hit: 1
-
