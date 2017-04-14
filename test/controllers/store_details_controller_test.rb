@@ -6,7 +6,7 @@ class StoreDetailsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get store_details_url
+    get store_details_path
     assert_response :success
   end
 
@@ -17,7 +17,7 @@ class StoreDetailsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create store_detail" do
     assert_difference('StoreDetail.count') do
-      post store_details_url, params: { store_detail: { building: @store_detail.building, city: @store_detail.city, pincode: @store_detail.pincode, storeEmail: @store_detail.storeEmail, storeMobile: @store_detail.storeMobile, storeName: @store_detail.storeName, street: @store_detail.street } }
+      post store_details_url, params: { store_detail: { building: @store_detail.building, city: @store_detail.city, pincode: @store_detail.pincode, storeEmail: @store_detail.store_email, storeMobile: @store_detail.store_mobile, storeName: @store_detail.store_name, street: @store_detail.street } }
     end
 
     assert_redirected_to store_detail_url(StoreDetail.last)

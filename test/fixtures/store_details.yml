@@ -5,7 +5,6 @@ one:
   street: MyString
   city: MyString
 
-
 two:
   building: MyString
   street: MyString

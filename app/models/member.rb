@@ -9,7 +9,7 @@ class Member < ApplicationRecord
          :recoverable, :trackable, :validatable,:timeoutable,password_length: 9..128
          
    validate :strong_password_check
-   
+   validates :email, uniqueness: true, presence: true
    #validates :user_name, uniqueness: true, presence: true, format: { with: /\A[a-zA-Z]+([a-zA-Z]|\d)*\Z/ }
 
   def strong_password_check
