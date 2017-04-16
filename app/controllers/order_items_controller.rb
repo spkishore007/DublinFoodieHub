@@ -1,3 +1,4 @@
+require 'pizza_app_logger'
 class OrderItemsController < ApplicationController
   def create
   if(current_order.order_status_id == 2) 
@@ -16,6 +17,8 @@ class OrderItemsController < ApplicationController
     @order.save
     #MemberMailer.order_email(@order).deliver
     session[:order_id] = @order.id
+    logger = MyLogger.instance
+    logger.orderInformation(@order.subtotal.to_s)
     respond_to do |format|
   format.js
 end

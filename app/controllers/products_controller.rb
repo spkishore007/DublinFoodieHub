@@ -1,6 +1,7 @@
 require 'pizza_decorator'
 require 'product_home_template'
 require 'medical_strategy'
+require 'pizza_app_logger'
 
 class ProductsController < ApplicationController
   
@@ -97,7 +98,8 @@ class ProductsController < ApplicationController
     @product = @store_detail.products.build(params.require(:product).permit(:name, :price, :active, :description, :foodType, :foodSize, :offerPrice, :quantityAvailable, :allergens, :ingredients, :calorie,  :hit))
     authorize @product, :create?
    # @food = StoreDetail.find(params[:store_detail_id]).foodDetails.build(params.require(:food).permit(:foodName, :foodType, :foodSize, :actualPrice, :offerPrice, :quantityAvailable, :hit))  
-
+    logger = MyLogger.instance
+    logger.productInformation(@product.name)
     respond_to do |format|
       if @product.save
         format.html { redirect_to store_detail_products_url, notice: 'Food detail was successfully created.' }

@@ -1,3 +1,4 @@
+require 'pizza_app_logger'
 class StoreDetailsController < ApplicationController
   before_action :set_store_detail, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_member!, except: [:index]
@@ -17,13 +18,13 @@ class StoreDetailsController < ApplicationController
   def show
   # @store_details =StoreDetailPolicy.new(current_user, @store_detail).new?
    # @store_detail = StoreDetail.find(params[:id])
-   authorize @store_detail, :show?
+   #authorize @store_detail, :show?
   end
 
   # GET /store_details/new
   def new
     @store_detail = StoreDetail.new
-    #authorize @store_detail, :new?
+    authorize @store_detail, :new?
   end
 
   # GET /store_details/1/edit
@@ -40,6 +41,8 @@ class StoreDetailsController < ApplicationController
     @store_detail.member =current_member
     authorize @store_detail, :create?
      MemberMailer.welcome_store_email(@store_detail).deliver!
+     logger = MyLogger.instance
+     logger.storeInformation(@store_detail.store_name)
     respond_to do |format|
       if @store_detail.save
         format.html { redirect_to @store_detail, notice: 'Store detail was successfully created.' }

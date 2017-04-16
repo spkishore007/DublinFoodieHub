@@ -5,7 +5,7 @@ class Product < ApplicationRecord
   validates :name, :quantityAvailable, :allergens, :description, presence: true
   validates :price, :active, :foodType, :foodSize, :calorie, presence: true
   validates :offerPrice, presence: true
-  attr_accessor :name, :price, :offerPrice
+
   serialize :tapping
   default_scope { where(active: true) }
   def self.policy_class

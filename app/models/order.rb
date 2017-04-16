@@ -5,7 +5,7 @@ class Order < ApplicationRecord
 
   belongs_to :order_status
   has_many :order_items
-  validates :subtotal, :tax, :shipping, :total, presence: true
+
   before_save :total_cart_price
   
   after_save :add_notifier

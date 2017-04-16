@@ -46,3 +46,4 @@ class StoreDetailsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to store_details_url
   end
 end
+

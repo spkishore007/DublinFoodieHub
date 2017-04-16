@@ -1,3 +1,4 @@
+require 'pizza_app_logger'
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
@@ -43,6 +44,8 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
     @profile.member_id = current_member.id
+    logger = MyLogger.instance
+    logger.profileInformation(@profile.firstName)
     respond_to do |format|
       if @profile.save
         format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
